@@ -1,18 +1,18 @@
 @extends('layout.master')
-@section('banner')
-    <link rel="stylesheet" href="css/glide.core.css">
-    <link rel="stylesheet" href="css/glide.theme.css">
-    <section id="banner">
-        <div class="wrap-container zerogrid">
-            <div class="col-3-3">
-                <div class="wrap-content">
-                    <div id="Glide" class="glide">
+@section('title')
+    Home
+    @endsection
 
+@section('banner-index-only')
+    <section id="banner">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div id="Glide" class="glide">
                         <div class="glide__arrows">
                             <button class="glide__arrow prev" data-glide-dir="<">prev</button>
                             <button class="glide__arrow next" data-glide-dir=">">next</button>
                         </div>
-
                         <div class="glide__wrapper">
                             <ul class="glide__track">
                                 <li class="glide__slide">
@@ -26,9 +26,7 @@
                                 </li>
                             </ul>
                         </div>
-
                         <div class="glide__bullets"></div>
-
                     </div>
                     <div class="alert-share">
                         <div class="addthis_native_toolbox"></div>
@@ -37,151 +35,254 @@
                 </div>
             </div>
         </div>
-        </div>
-        </section>
+    </section>
     @endsection
-@section('maincontent')
-    <div id="main-content" class="col-2-3">
-        <div class="wrap-content">
-            <div class="movie">
-                <div class="row type">
-                    <div class="title">
-                        <center><h2>LATEST MOVIES</h2></center>
-                    </div>
-                    <ul>
-                        <li>
-                            <select>
-                                <option value="audi" selected>Action</option>
-                                <option value="volvo">Adventure</option>
-                                <option value="saab">Animation</option>
-                                <option value="volvo">Children</option>
-                                <option value="saab">Comedy</option>
-                                <option value="volvo">Crime</option>
-                                <option value="saab">Documentary</option>
-                                <option value="volvo">Drama</option>
-                                <option value="saab">Family</option>
-                                <option value="volvo">Fantasy</option>
-                                <option value="saab">Food</option>
-                                <option value="audi">Game Show</option>
-                                <option value="volvo">Home and Garden</option>
-                                <option value="saab">Horror</option>
-                                <option value="volvo">Mini-Series</option>
-                                <option value="saab">News</option>
-                                <option value="volvo">Reality</option>
-                                <option value="saab">Science-Fiction</option>
-                                <option value="volvo">Soap</option>
-                                <option value="saab">Special Interest</option>
-                                <option value="volvo">Sport</option>
-                                <option value="saab">Suspense</option>
-                                <option value="volvo">Talk Show</option>
-                                <option value="saab">Thriller</option>
-                                <option value="volvo">Travel</option>
-                                <option value="saab">Western</option>
-                            </select>
-                        </li>
-                        <li><a class="button " href="#">Search</a></li>
-                    </ul>
-                </div>
-                @foreach($latestMovies->chunk(4) as $l4)
-                <div class="row">
-                    @foreach($l4 as $item)
-                    <div class="col-1-4">
-                        <div class="wrap-col">
-                            <div class="post">
-                                <div class="view effect">
-                                    <img class="thumb" src="{{ asset('images/poster/'.$item->movieimages()->whereType('poster')->first()->link) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
-                                    <div class="mask">
-                                        <a href="{{ url('movie/'.$item->slug) }}" class="info" title="Click to watch free {{ $item->name }} online"><img src="images/play_button_64.png" alt="Click to watch free {{ $item->name }} online"/></a>
-                                    </div>
 
+@section('content')
+    <!--////////////////////////////////////Main content-->
+    <section id="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="main-content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- suggestion -->
+                    <div class="suggestion">
+                        <div class="row">
+                            <div class="title">
+                                <center>
+                                    <h2>SUGGESTION</h2>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <ul class="nav nav-pills">
+                                    <li class="active"><a href="#">Featured</a></li>
+                                    <li><a href="#">Top viewed today</a></li>
+                                    <li><a href="#">Most Favorite</a></li>
+                                    <li><a href="#">Top Rating</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online"/>
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
                                 </div>
-                                <div class="clear"></div>
-                                <a href="movie-detail.html"><h3>{{ $item->name }}</h3></a>
-                                <div class="please-vote-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online"/>
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
                                 </div>
-                                <br>
-                                <span>IMDB: {{ isset($item->rating)? $item->rating:0 }}</span>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online"/>
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online"/>
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online"/>
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online"/>
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- End Suggestion -->
+                    <div class="movie">
+                        <div class="row">
+                            <div class="title">
+                                <center>
+                                    <h2>LATEST MOVIES</h2>
+                                </center>
+                            </div>
+                        </div>
+                        @foreach($latestMovies->chunk(6) as $chunked)
+                        <div class="row">
+                            @foreach($chunked as $item)
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free {{ $item->name }} online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>{{ $item->name }}</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: {{ $item->rating }}</span>
+                                </div>
+                            </div>
+                                @endforeach
+                        </div>
                         @endforeach
-                </div>
-                @endforeach
-                <center>
-                    <p><a href="{{ url('latestmovie') }}" title="View all latest movie" class="view-more"> View more latest movie >></a></p>
-                </center>
-            </div>
-            <div class="serie">
-                <div class="row type">
-                    <div class="title">
-                        <center><h2>LATEST TV SERIES</h2></center>
+                        <center>
+                            <p><a href="latest-movies.html" title="View all latest movie" class="view-more"> View more latest movie >></a></p>
+                        </center>
                     </div>
-                    <ul>
-                        <li>
-                            <select>
-                                <option value="audi" selected>Action</option>
-                                <option value="volvo">Adventure</option>
-                                <option value="saab">Animation</option>
-                                <option value="volvo">Children</option>
-                                <option value="saab">Comedy</option>
-                                <option value="volvo">Crime</option>
-                                <option value="saab">Documentary</option>
-                                <option value="volvo">Drama</option>
-                                <option value="saab">Family</option>
-                                <option value="volvo">Fantasy</option>
-                                <option value="saab">Food</option>
-                                <option value="audi">Game Show</option>
-                                <option value="volvo">Home and Garden</option>
-                                <option value="saab">Horror</option>
-                                <option value="volvo">Mini-Series</option>
-                                <option value="saab">News</option>
-                                <option value="volvo">Reality</option>
-                                <option value="saab">Science-Fiction</option>
-                                <option value="volvo">Soap</option>
-                                <option value="saab">Special Interest</option>
-                                <option value="volvo">Sport</option>
-                                <option value="saab">Suspense</option>
-                                <option value="volvo">Talk Show</option>
-                                <option value="saab">Thriller</option>
-                                <option value="volvo">Travel</option>
-                                <option value="saab">Western</option>
-                            </select>
-                        </li>
-
-                        <li><a class="button " href="#">Search</a></li>
-                    </ul>
-                </div>
-                @foreach($latestSeries->chunk(4) as $l4)
-                <div class="row">
-                    @foreach($l4 as $item)
-                    <div class="col-1-4">
-                        <div class="wrap-col">
-                            <div class="post">
-                                <div class="view effect">
-                                    <img class="thumb" src="{{ asset('images/poster/'.$item->movieimages()->whereType('poster')->first()->link) }}"  />
-                                    <div class="mask">
-                                        <a href="{{url('movie/'.$item->slug)}}" class="info" title="Full Image"><img src="images/play_button_64.png" /></a>
-                                    </div>
-                                </div>
-                                <a href="{{ url('latestseries') }}"><h3>{{ $item->name }}</h3></a>
-                                <a href="#"><img class="vote-star" src="images/star.png" alt="Film_Name 4 stars"/></a>
-                                <br>
-                                <span>IMDB: {{ $item->imdb_code }}</span>
+                    <div class="serie">
+                        <div class="row">
+                            <div class="title">
+                                <center>
+                                    <h2>LATEST TV SERIES</h2>
+                                </center>
                             </div>
                         </div>
+                        @foreach($latestSeries->chunk(6) as $chunked)
+                        <div class="row">
+                            @foreach($chunked as $item)
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free {{ $item->name }} online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>{{ $item->name }}</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: {{ $item->rating }}</span>
+                                </div>
+                            </div>
+                                @endforeach
+                        </div>
+                        @endforeach
+                        <center>
+                            <p><a href="series-movies.html" title="View all series movie" class="view-more"> View more series movie >></a></p>
+                        </center>
                     </div>
-                    @endforeach
+
                 </div>
-                @endforeach
-                <center>
-                    <p><a href="{{ url('latestseries') }}" title="View all series movie" class="view-more"> View more series movie >></a></p>
-                </center>
             </div>
         </div>
-    </div>
+    </section>
+    <!--////////////////////////////////////End content-->
     @endsection

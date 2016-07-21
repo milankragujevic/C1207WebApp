@@ -1,109 +1,119 @@
-<div id="sidebar" class="col-1-3">
-    <div class="wrap-sidebar">
-        <!---- Start Widget ---->
-        <div class="widget wid-new-updates">
-            <div class="wid-header">
-                <h4>Hot Updates !</h4>
-            </div>
-            <div class="wid-content">
-                <ul>
-                    @foreach($hotmovie as $movie)
-                    <li><a href="#">{{ $movie->name }}</a><span><img src="{{ url('images/hot.png') }}" alt="Watch free hot movies online {{ $movie->name }}" title="Watch free hot movies online {{ $movie->name }}"/></span></li>
-                        @endforeach
-                </ul>
-                <div class="view-more-small">
-                    <a href="">View more &gt;&gt;</a>
-                </div>
-            </div>
-        </div>
-        <!---- Start Widget ---->
-        <div class="widget wid-post">
-            <div class="wid-header">
-                <h4>Requested movies</h4>
-            </div>
-            <div class="wid-content">
-                @foreach($requestedMovie as $movie)
-                <div class="post">
-                    <a href="#"><img src="{{ asset('images/poster/'.$movie->movieimages()->whereType('poster')->first()->link) }}" alt="Watch free today's movies online {{ $movie->name }}" title="Watch free today's movies online {{ $movie->name }}"/></a>
-                    <div class="wrapper">
-                        <a href="#"><h6>{{ $movie->name }}</h6></a>
-                        <p>IMDB: {{ $movie->rating }}</p>
-                        <div class="please-vote-star">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+<section id="side-bar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!-- Side bar -->
+                <!-- Hot Movies-->
+                <div class="hot-movies">
+                    <div class="row">
+                        <div class="title">
+                            <center>
+                                <h2>HOT MOVIES</h2>
+                            </center>
                         </div>
                     </div>
-                </div>
-                @endforeach
-                    <div class="view-more-small">
-                        <a href="">View more &gt;&gt;</a>
+                    @foreach($hotMovie->chunk(6) as $chunked)
+                    <div class="row">
+                        @foreach($chunked as $item)
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>{{ $item->name }}</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-            </div>
-        </div>
-        <!---- Start Widget ---->
-        <div class="widget wid-last-updates">
-            <div class="wid-header">
-                <h4>Lastest Updates</h4>
-            </div>
-            <div class="wid-content">
-                @foreach($latestmovie as $movie)
-                    <div class="post">
-                        <a href="#"><img src="{{ asset('images/poster/'.$movie->movieimages()->whereType('poster')->first()->link) }}" alt="Watch free today's movies online {{ $movie->name }}" title="Watch free today's movies online {{ $movie->name }}"/></a>
-                        <div class="wrapper">
-                            <a href="#"><h6>{{ $movie->name }}</h6></a>
-                            <p>IMDB: {{ $movie->rating }}</p>
-                            <div class="please-vote-star">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
+                    @endforeach
+                    <center>
+                        <p><a href="series-movies.html" title="View all series movie" class="view-more"> View more series movie </a></p>
+                    </center>
+                </div>
+                <!-- Requested Movies -->
+                <div class="requested-movies">
+                    <div class="row">
+                        <div class="title">
+                            <center>
+                                <h2>REQUESTED MOVIES</h2>
+                            </center>
+                        </div>
+                    </div>
+                    @foreach($requestedMovie->chunk(6) as $chunked)
+                    <div class="row">
+                        @foreach($chunked as $item)
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            <div class="post">
+                                <div class="view effect">
+                                    <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
+                                    <div class="mask">
+                                        <a href="movie-detail.html" class="info" title="Click to watch free {{ $item->name }} online"><img src="images/play_button_64.png" alt="Click to watch free {{ $item->name }} online"/></a>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <a href="movie-detail.html">
+                                    <h3>{{ $item->name }}</h3>
+                                </a>
+                                <div class="please-vote-star">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <span>IMDB: {{ $item->rating }}</span>
                             </div>
                         </div>
+                            @endforeach
                     </div>
-                @endforeach
-                    <div class="view-more-small">
-                        <a href="">View more &gt;&gt;</a>
-                    </div>
-            </div>
-        </div>
-        {{--Country--}}
-        <div id="country" class="widget wid-tag">
-            <div class="wid-header">
-                <h4>Country</h4>
-            </div>
-            <div class="wid-content">
-                <ol>
-                    <li><a href="#">Asia</a></li>
-                    <li><a href="#">China</a></li>
-                    <li><a href="#">France</a></li>
-                    <li><a href="#">HongKong</a></li>
-                    <li><a href="#">India</a></li>
-                    <li><a href="#">Japan</a></li>
-                    <li><a href="#">Korea</a></li>
-                    <li><a href="#">Taiwan</a></li>
-                    <li><a href="#">Thailand</a></li>
-                    <li><a href="#">United Kingdom</a></li>
-                    <li><a href="#">United States</a></li>
-                    <li><a href="#">Other</a></li>
-                </ol>
-            </div>
-        </div>
-        <!---- Start Widget ---->
-        <div class="widget wid-tag">
-            <div class="wid-header">
-                <h4>Tags</h4>
-            </div>
-            <div class="wid-content">
-                <ul>
-                    @foreach($latestTag as $tag)
-                        <li><a href="#">{{ $tag->tag_content }}</a></li>
                     @endforeach
-                </ul>
+                    <center>
+                        <p><a href="series-movies.html" title="View all series movie" class="view-more"> View more series movie >></a></p>
+                    </center>
+                </div>
+                <!---- Start Widget ---->
+                <div class="wid-tag">
+                    <div class="row">
+                        <div class="title">
+                            <center>
+                                <h4>TAGS</h4>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <ul>
+                                <li><a href="#">free movies</a></li>
+                                <li><a href="#">watch free movies online</a></li>
+                                <li><a href="#">cinema movies</a></li>
+                                <li><a href="#">tv series</a></li>
+                                <li><a href="#">action</a></li>
+                                <li><a href="#">horror</a></li>
+                                <li><a href="#">animation</a></li>
+                                <li><a href="#">comedy</a></li>
+                                <li><a href="#">romance</a></li>
+                                <li><a href="#">free movies online</a></li>
+                                <li><a href="#">smovies.tv</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--End Side bar -->
             </div>
         </div>
     </div>
-</div>
+</section>

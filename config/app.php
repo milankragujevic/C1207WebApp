@@ -157,8 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        //we dont need side anymore
-//        App\Providers\SidebarDataServiceProvider::class,
+        App\Providers\SidebarDataServiceProvider::class,
 
     ],
 

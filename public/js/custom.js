@@ -1,12 +1,4 @@
 $(function(){
-	if(window.innerWidth > 992){
-		$('.menu .wrap-nav .sub-menu-item').hover(function(){
-			$('.sub-menu').slideDown();
-		});
-		$('.sub-menu').mouseleave(function(){
-			$(this).slideUp();
-		});
-	}
 	
 	$("#shadow").css("height", $(document).height()).hide();
     $(".lightSwitcher").click(function(){
@@ -22,19 +14,18 @@ $(function(){
 	
 	/*menu-server*/
 	$('.menu-server .play-server2').click(function(){
-		document.getElementById('frame-player').src = 'https://redirector.googlevideo.com/videoplayback?requiressl=yes&id=198858db88f52ad5&itag=22&source=webdrive&ttl=transient&app=texmex&ip=2a05:840::e098&ipbits=32&expire=1468647885&sparams=requiressl%2Cid%2Citag%2Csource%2Cttl%2Cip%2Cipbits%2Cexpire&signature=86C1E629C9D43BA05C6FE42803566F1893D13621.326AAA76323BE3C771F6F93C7AFD1760BCD85B61&key=ck2&mm=30&mn=sn-5hne6n7z&ms=nxu&mt=1468632808&mv=u&nh=IgpwcjA0LmFtczE1KgkxMjcuMC4wLjE&pl=48';
+		document.getElementById('frame-player').src = 'https://redirector.googlevideo.com/videoplayback?requiressl=yes&id=88dd5bd1c35e4774&itag=22&source=webdrive&ttl=transient&app=texmex&ip=2a05:840::e098&ipbits=32&expire=1469025121&sparams=requiressl%2Cid%2Citag%2Csource%2Cttl%2Cip%2Cipbits%2Cexpire&signature=326958655B8B48173A4065F2EE418D65B3ACC80D.B71CD4BD9C96A1376340E7145ADA9B7AB406D503&key=ck2&mm=30&mn=sn-5hne6nl7&ms=nxu&mt=1469010086&mv=u&nh=IgpwcjA0LmFtczE2KgkxMjcuMC4wLjE&pl=48';
 	});
 	$('.menu-server .play-server1').click(function(){
-		document.getElementById('frame-player').src = 'https://redirector.googlevideo.com/videoplayback?requiressl=yes&id=198858db88f52ad5&itag=22&source=webdrive&ttl=transient&app=texmex&ip=2a05:840::e098&ipbits=32&expire=1468647885&sparams=requiressl%2Cid%2Citag%2Csource%2Cttl%2Cip%2Cipbits%2Cexpire&signature=86C1E629C9D43BA05C6FE42803566F1893D13621.326AAA76323BE3C771F6F93C7AFD1760BCD85B61&key=ck2&mm=30&mn=sn-5hne6n7z&ms=nxu&mt=1468632808&mv=u&nh=IgpwcjA0LmFtczE1KgkxMjcuMC4wLjE&pl=48';
+		document.getElementById('frame-player').src = 'https://redirector.googlevideo.com/videoplayback?requiressl=yes&id=88dd5bd1c35e4774&itag=22&source=webdrive&ttl=transient&app=texmex&ip=2a05:840::e098&ipbits=32&expire=1469025121&sparams=requiressl%2Cid%2Citag%2Csource%2Cttl%2Cip%2Cipbits%2Cexpire&signature=326958655B8B48173A4065F2EE418D65B3ACC80D.B71CD4BD9C96A1376340E7145ADA9B7AB406D503&key=ck2&mm=30&mn=sn-5hne6nl7&ms=nxu&mt=1469010086&mv=u&nh=IgpwcjA0LmFtczE2KgkxMjcuMC4wLjE&pl=48';
 	});
 	
 });
 $( window ).scroll(function() {
-  /*fix menu*/
-	if($(window).scrollTop()>250){
-		$('#menu-top').addClass('fix-menu-top');
+	if($(window).scrollTop()>500){
+		$('footer .back-to-top').show();
 	}
 	else{
-		$('#menu-top').removeClass('fix-menu-top');
+		$('footer .back-to-top').hide();
 	}
 });

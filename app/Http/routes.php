@@ -23,7 +23,10 @@ Route::get('/', function () {
 //    $returnImage = Image::make($image);
 //    return $returnImage->response();
 //});
-Route::resource('/movie','MovieController');
+Route::get('/{slug}','MovieController@show');
+
+Route::get('play/{slug}/{epislug?}','MovieController@play');
+
 Route::get('/','IndexController@index');
 Route::get('latestmovie','IndexController@latestmovie');
 Route::get('latestseries','IndexController@latestseries');

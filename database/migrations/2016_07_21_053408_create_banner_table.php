@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterDescriptionToText extends Migration
+class CreateBannerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,10 @@ class AlterDescriptionToText extends Migration
      */
     public function up()
     {
-        Schema::table('movies',function (Blueprint $table){
-            $table->text('description');
+        Schema::create('banner',function (Blueprint $table){
+            $table->integer('id');
+            $table->integer('movie_id');
+            $table->string('link');
         });
     }
 

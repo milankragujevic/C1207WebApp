@@ -137,6 +137,7 @@ class MovieController extends Controller
                 'country' => $request->input('country'),
                 'language' => $request->input('lang'),
                 'rated' => $request->input('rated'),
+                'poster' =>str_slug($request->input('movieName')).'.jpg',
                 'trailer' => $request->input('trailer'),
                 'award' => $request->input('award'),
                 'type' => $request->input('type'),
@@ -197,12 +198,12 @@ class MovieController extends Controller
 //            'link'=>str_slug($movie->name).'jpg',
 //            'type'=>'poster'
 //        ]);
-            $movie->movieimages()->save(
-                new Movieimage([
-                    'link' => str_slug($movie->name) . '.jpg',
-                    'type' => 'poster'
-                ])
-            );
+//            $movie->movieimages()->save(
+//                new Movieimage([
+//                    'link' => str_slug($movie->name).rand(1000,9000) . '.jpg',
+//                    'type' => 'poster'
+//                ])
+//            );
 
         });
         return redirect('admin/movie');

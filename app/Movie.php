@@ -9,7 +9,7 @@ class Movie extends Model
 {
     use SoftDeletes;
     protected $dates=['deleted_at'];
-    protected $fillable=['name','slug','title','description','runtime',
+    protected $fillable=['name','slug','title','description','runtime','poster',
     'imdb_code','imdb_vote','released','writer','country','language','rated',
         'trailer','award','type','quality','rating','created_by','updated_by','total_seasons'];
     public function tags(){

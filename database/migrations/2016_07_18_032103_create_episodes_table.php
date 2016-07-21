@@ -19,7 +19,7 @@ class CreateEpisodesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('season');
-            $table->string('description');
+            $table->text('description');
             $table->double('rating');
             $table->string('quality');
             $table->string('released');

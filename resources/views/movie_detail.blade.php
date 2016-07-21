@@ -1,98 +1,195 @@
 @extends('layout.master')
-@section('maincontent')
-    <div id="main-content" class="col-2-3">
-        <div class="wrap-content">
-            <article>
-                <div class="art-header">
-                    <div class="col-1-3">
-                        <div class="wrap-col">
-                            <img src="{{ url('images/poster/'.$movie->movieimages()->whereType('poster')->first()->link) }}">
-                        </div>
-                    </div>
-                    <div class="col-2-3">
-                        <div class="wrap-col">
-                            <ul>
-                                <li><h2>{{ $movie->name }} ({{ substr($movie->released,7) }})</h2></li>
-                                <li><p>Genre:
-                                    @foreach($movie->genresmodel as $genre)
-                                        <a href="#">{{ $genre->name }}</a>
-                                        @endforeach
-                                    </p></li>
-                                <li><p>Director:
-                                    @foreach($movie->directors as $director)
-                                        <a href="#">{{ $director->name }}</a>
-                                        @endforeach
-                                    </p></li>
-                                <li><p>Writer: {{ $movie->writer }}</p></li>
-                                <li><p>Actor:
-                                        @foreach($movie->actors as $actor)
-                                            <a href="#">{{ $actor->name }}</a>
-                                        @endforeach
-                                    </p></li>
-                                <li><p>Runtime: {{ $movie->runtime }}</p></li>
-                                <li><p>IMDB: <a href="http://www.imdb.com/title/{{ $movie->imdb_code }}/" target="_blank">{{ $movie->rating }}/10</a></p></li>
-                                <li><p>Released: {{ $movie->released }}</p></li>
-                                <li><p>Language: {{ $movie->language }}</p></li>
-                                <li><p>Country: {{ $movie->country }}</p></li>
-                                <li><p>Tags: <a href="#">{{ $movie->name }}</a>,
-                                    @foreach($movie->tags as $tag)
-                                        <a href="#">{{ $tag->tag_content }}</a>
-                                        @endforeach
-                                    </p></li>
-                                <li class="star"><a href="#"><img class="vote-star" src="{{ url('images/star.png') }}" alt="{{ $movie->name }} 4 stars"></a></li>
-                                <li><a class="button bt1" href="{{ url('play/'.$movie->slug) }}" target="_blank">Play</a><a class="button bt1" href="#">Trailer</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="art-content">
-                    <section id="trailer">
-                        @if(!empty($movie->trailer))
-                            <iframe width="560" height="315" src="{{ $movie->trailer }}" frameborder="0" allowfullscreen></iframe>
-                            @endif
-                    </section>
-                    @if(isset($movie->movieimages))
-                    @foreach($movie->movieimages as $img)
-                        <div class="load-image-1">
+@section('title')
+    @endsection
 
-                        </div>
-                        @endforeach
-                    @endif
-                    <p class="detail-info-movie">{{ !empty($movie->detail)? $movie->detail:'No detail provided' }}</p>
-                    <div class="clear"></div>
-                </div>
-            </article>
-            <div class="widget wid-related">
-                <div class="wid-header">
-                    <h5>Related Post</h5>
-                </div>
-                <div class="wid-content">
-                    <div class="row">
-                        <div class="col-1-3">
-                            <div class="wrap-col">
-                                <a href="#"><img src="images/10.jpg"></a>
-                                <p>IMDB: 8.5</p>
-                                <a href="#"><img class="vote-star" src="images/star.png" alt="Film_Name 4 stars"></a>
+@section('content')
+    <section id="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="main-content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <article class="article-movie-detail">
+                        <div class="row">
+                            <div class="art-header">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                    <img src="images/boy7.png">
+                                </div>
+                                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                                    <ul class="ul-detail-movie">
+                                        <li><h2>Warcraft (2016)</h2></li>
+                                        <li><p>Genre: <a href="search-result.html">Action</a>, <a href="#">Adventure</a></p></li>
+                                        <li><p>Director: <a href="#">Duncan Jones</a></p></li>
+                                        <li><p>Writer: <a href="#">Duncan Jones (screenplay)</a>, <a href="#">Duncan Jones (screenplay)</a>, <a href="#">Duncan Jones (screenplay)</a>, <a href="#">Duncan Jones (screenplay)</a></p></li>
+                                        <li><p>Actor: <a href="#">Travis Fimmel</a>, <a href="#">Travis Fimmel</a>, <a href="#">Travis Fimmel</a>, <a href="#">Travis Fimmel</a>, <a href="#">Travis Fimmel</a>, <a href="#">Travis Fimmel</a></p></li>
+                                        <li><p>Runtime: 123 min</p></li>
+                                        <li><p>IMDB: <a href="http://www.imdb.com/title/tt0803096/" target="_blank">9/10</a></p></li>
+                                        <li><p>Released: 10 Jun 2016</p></li>
+                                        <li><p>Language: <a href="#">English</a></p></li>
+                                        <li><p>Country: <a href="#">Usa</a></p></li>
+                                        <li><p>Tags: <a href="#">Film_Name</a>, <a href="#">free movies</a>, <a href="#">free movies online</a>, <a href="#">free hd movie</a></p></li>
+                                        <li class="star"><div class="please-vote-star">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </li>
+                                        <li><a class="button bt1" href="watching.html">Play</a><a class="button bt1" href="#trailer">Trailer</a></li>
+
+                                        <li class="eps-more"><a class="btn btn-eps">Eps 1</a><a class="btn btn-eps">Eps 1</a><a class="btn btn-eps">Eps 1</a><a class="btn btn-eps">Eps 1</a><a class="btn btn-eps">Eps 1</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="news-movies">
+
                             </div>
                         </div>
-                        <div class="col-1-3">
-                            <div class="wrap-col">
-                                <a href="#"><img src="images/13.jpg"></a>
-                                <p>IMDB: 8.5</p>
-                                <a href="#"><img class="vote-star" src="images/star.png" alt="Film_Name 4 stars"></a>
+                    </article>
+                    <div class="movie">
+                        <div class="row">
+                            <div class="title">
+                                <center>
+                                    <h2>RELATED POST</h2>
+                                </center>
                             </div>
                         </div>
-                        <div class="col-1-3">
-                            <div class="wrap-col">
-                                <a href="#"><img src="images/6.jpg"></a>
-                                <p>IMDB: 8.5</p>
-                                <a href="#"><img class="vote-star" src="images/star.png" alt="Film_Name 4 stars"></a>
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>Lethal Weapon 4</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>IMDB: 8.5</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    @endsection
+    </section>
+@endsection

@@ -18,7 +18,6 @@ class CreateMoviesTable extends Migration
             $table->string('slug')->unique();
             $table->string('title');
             $table->text('description');
-            $table->text('detail');
             $table->string('runtime');
             $table->string('imdb_code');
             $table->string('imdb_vote');
