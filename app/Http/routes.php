@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::get('/{slug}','MovieController@show');
 
 Route::get('play/{slug}/{epislug?}','MovieController@play');
-
+Route::get('ajax/recommend','IndexController@recommend');
 Route::get('/','IndexController@index');
 Route::get('latestmovie','IndexController@latestmovie');
 Route::get('latestseries','IndexController@latestseries');

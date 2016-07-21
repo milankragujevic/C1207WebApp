@@ -41,5 +41,9 @@ class IndexController extends Controller
         return view('movie_list',compact('title','latestMovie'));
     }
 
+    public function recommend(){
+        $movie=Movie::take(12)->get();
+        return $movie;
+    }
 
 }
