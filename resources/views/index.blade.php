@@ -56,14 +56,14 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <ul class="nav nav-pills">
-                                    <li class="active"><a href="#">Featured</a></li>
-                                    <li><a href="#">Top viewed today</a></li>
-                                    <li><a href="#">Most Favorite</a></li>
-                                    <li><a href="#">Top Rating</a></li>
+                                    <li class="active"><a onclick="ajaxGetContent('featured')" id="featured">Featured</a></li>
+                                    <li><a onclick="ajaxGetContent('topToday')" id="topToday">Top viewed today</a></li>
+                                    <li><a onclick="ajaxGetContent('mostFavorite')" id="mostFavorite">Most Favorite</a></li>
+                                    <li><a onclick="ajaxGetContent('topRat')" id="topRat">Top Rating</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" id="suggestion-content">
                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                 <div class="post">
                                     <div class="view effect">
