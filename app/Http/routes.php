@@ -23,7 +23,7 @@ Route::get('/', function () {
 //    $returnImage = Image::make($image);
 //    return $returnImage->response();
 //});
-Route::get('/{slug}','MovieController@show');
+//Route::get('/{slug}','MovieController@show');
 
 Route::get('play/{slug}/{epislug?}','MovieController@play');
 
