@@ -78,3 +78,35 @@ function ajaxGetContent(e) {
         }
     });
 }
+$(document).ready(function(){
+    $("#search-box").keyup(function(){
+        if ($(this).val()!='') {
+            $.ajax({
+                type: 'GET',
+                url: 'ajax/search/' + $(this).val(),
+                dataType: 'json',
+                beforeSend: function () {
+                    $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
+                },
+                success: function (result) {
+                    $("#suggesstion-box").show();
+                    var html = '';
+                    html += '<ul id="film-list">';
+                    $.each(result, function (key, item) {
+                        html += '<li onClick="selectFilm(\'' + item['name'] + '\');">' + item['name'] + '</li>';
+                    });
+                    html += '</ul>';
+                    $("#suggesstion-box").html(html);
+                    $("#search-box").css("background", "#FFF");
+                }
+            });
+        } else {
+            $("#suggesstion-box").hide();
+        }
+    });
+});
+
+function selectFilm(val) {
+    $("#search-box").val(val);
+    $("#suggesstion-box").hide();
+}

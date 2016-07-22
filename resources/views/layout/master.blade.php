@@ -102,8 +102,9 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="pull-right">
                             <form method="get" action="/search" id="search"  >
-                                <input name="q" type="text" size="40" placeholder="Search movie name, actor..." />
+                                <input id="search-box" type="text" size="40" placeholder="Search movie name, actor..." />
                                 <input type="submit" value="Search">
+                                <div id="suggesstion-box"></div>
                             </form>
                             <a class="movies-request" href="movies-request.html" title="Send movies request please!">Movies Request<i class="fa fa-pencil"></i></a>
                         </div>

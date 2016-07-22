@@ -20,7 +20,8 @@ class IndexController extends Controller
     {
         $latestMovies= Movie::whereType('movie')->orderBy('updated_at','desc')->take(12)->get();
         $latestSeries=Movie::whereType('series')->orderBy('updated_at','desc')->take(12)->get();
-        $banner=Banner::take(6)->get();
+        //$banner=Banner::take(6)->get();
+        $banner='';
         return view('index',compact('latestMovies','latestSeries','banner'));
     }
 
