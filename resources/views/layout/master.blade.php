@@ -104,6 +104,7 @@
                             <form method="get" action="/search" id="search"  >
                                 <input id="search-box" type="text" size="40" placeholder="Search movie name, actor..." />
                                 <input type="submit" value="Search">
+                                <!-- Khung hien thi phan search -->
                                 <div id="suggesstion-box"></div>
                             </form>
                             <a class="movies-request" href="movies-request.html" title="Send movies request please!">Movies Request<i class="fa fa-pencil"></i></a>

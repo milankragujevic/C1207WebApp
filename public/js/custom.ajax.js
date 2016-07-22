@@ -3,7 +3,7 @@
  */
 function ajaxGetContent(e) {
     $.ajax({
-        url:"ajax/recommend",
+        url:"ajax/movie/feature",
         type: 'GET',
         dataType: 'json',
         success: function (result) {
@@ -55,11 +55,11 @@ function ajaxGetContent(e) {
                 html += '<div class="view effect">';
                 html += '<img class="thumb" src="images/poster/'+ item['poster'] +'" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online"/>';
                 html += '<div class="mask">';
-                html += '<a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"/></a>';
+                html += '<a href="/movie/'+item['slug']+'" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"/></a>';
                 html += '</div>';
                 html += '</div>';
                 html += '<div class="clear"></div>';
-                html += '<a href="movie-detail.html">';
+                html += '<a href="/movie/'+item['slug']+'">';
                 html += '<h3>'+item['name']+'</h3>';
                 html += '</a>';
                 html += '<div class="please-vote-star">';
@@ -93,7 +93,7 @@ $(document).ready(function(){
                     var html = '';
                     html += '<ul id="film-list">';
                     $.each(result, function (key, item) {
-                        html += '<li onClick="selectFilm(\'' + item['name'] + '\');">' + item['name'] + '</li>';
+                        html += '<li onClick="selectFilm(\'' + item['name'] + '\');"><a href="/movie/'+item['slug']+'">' + item['name'] + '</a></li>';
                     });
                     html += '</ul>';
                     $("#suggesstion-box").html(html);
