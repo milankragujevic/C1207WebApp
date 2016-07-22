@@ -41,4 +41,11 @@ class Movie extends Model
     public function analytic(){
         return $this->morphOne(Analytics::class,'analyticable');
     }
+    public function banner(){
+        $this->hasOne(Banner::class);
+    }
+
+    public function episodes(){
+        return $this->hasMany(Episode::class);
+    }
 }

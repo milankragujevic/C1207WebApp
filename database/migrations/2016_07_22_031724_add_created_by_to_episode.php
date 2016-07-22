@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBannerTable extends Migration
+class AddCreatedByToEpisode extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,9 @@ class CreateBannerTable extends Migration
      */
     public function up()
     {
-        Schema::create('banners',function (Blueprint $table){
-            $table->integer('id');
-            $table->integer('movie_id');
-            $table->string('link');
+        Schema::table('episodes',function (Blueprint $table){
+            $table->string('created_by');
+            $table->string('updated_by');
         });
     }
 

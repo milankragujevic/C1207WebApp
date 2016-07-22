@@ -25,8 +25,8 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-equalizer font-blue-hoki"></i>
-                        <span class="caption-subject font-blue-hoki bold uppercase">{{$movie->name}}</span>
-                        <span class="caption-helper">{{$movie->name}}</span>
+                        <span class="caption-subject font-blue-hoki bold uppercase">{{$movie1->name}}</span>
+                        <span class="caption-helper">{{$movie1->name}}</span>
                     </div>
                     <div class="tools">
                         <a href="" class="collapse" data-original-title="" title=""> </a>
@@ -38,26 +38,24 @@
                 </div>
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    <form method="post" action="{{ url('admin/movie/'.$movie->id) }}" class="horizontal-form">
+                    <form method="post" action="{{ url('admin/episode') }}" class="horizontal-form">
                         {{ csrf_field() }}
-                        <input name="_method" value="PUT" type="hidden">
                         <div class="form-body">
-                            <h3 class="form-section">General</h3>
+                            <h3 class="form-section">IMDB</h3>
+                            <input type="hidden" value="{{ $movie1->id }}" name="movieid" >
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Tags</label>
                                         <input type="text" name="tags" class="form-control" data-role="tagsinput"
-                                               value="{{$tagsString}}">
+                                               value="">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Genres</label>
-                                        <input type="text" name="movieGenres" class="form-control" data-role="tagsinput"
-                                               style="display: none;"
-                                               value="{{ $genresString }}">
+                                        <label class="control-label">Imdb Code</label>
+                                        <input type="text" name="imdb_code" class="form-control" value="{{ $movie['imdbID'] }}" >
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -65,21 +63,18 @@
                             <!--/row-->
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group form-md-checkboxes">
-                                        <label>Group</label>
-                                        <div class="mt-checkbox-inline">
-                                            @foreach($groups as $item)
-                                                <label class="mt-checkbox">
-                                                    <input type="checkbox" name="group[]" id="inlineCheckbox21"
-                                                           value="{{ $item->id }}" {{empty($movie->groups()->whereGroupName($item->group_name)->first())?'':'checked' }}> {{ $item->group_name }}
-                                                    <span></span>
-                                                </label>
-                                            @endforeach
-                                        </div>
+                                    <div class="form-group ">
+                                        <label>Name</label>
+                                        <input type="text" name="name" class="form-control" value="{{ $movie['Title'] }}">
                                     </div>
                                 </div>
                                 <!--/span-->
-
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label>Poster</label>
+                                        <img src="{{ url('images/episode/poster/'.str_slug($movie1->name.' '.$movie['Title']) . '.jpg') }}">
+                                    </div>
+                                </div>
                                 <!--/span-->
                             </div>
                             <h3 class="form-section">Link</h3>
@@ -87,23 +82,76 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Google Link</label>
-                                        <input value="{{ isset($googleLink)?$googleLink->link:'' }}" type="text"
-                                               name="google_link" id="google_link" class="form-control">
+                                        <label class="control-label">Google ID</label>
+                                        <input value="" type="text"
+                                               name="google_drive" class="form-control">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Openload</label>
-                                        <input value="{{ isset($openloadLink)?$openloadLink->link:'' }}" type="text"
-                                               name="openload_link" id="lastName" class="form-control">
+                                        <label class="control-label">Openload ID</label>
+                                        <input value="" type="text"
+                                               name="openload" class="form-control">
                                     </div>
                                 </div>
                                 <!--/span-->
                             </div>
                             <!--/row-->
-                          </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Slug</label>
+                                        <input value="{{ str_slug($movie['Title'].' '.date('Y')) }}" type="text"
+                                               name="slug" class="form-control">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Season</label>
+                                        <input value="{{ $movie['Season'] }}" type="text"
+                                               name="season" class="form-control">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Description</label>
+                                        <textarea class="form-control" name="description">{{ $movie['Plot'] }}</textarea>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Rating</label>
+                                        <input value="{{ $movie['imdbRating'] }}" type="text"
+                                               name="rating" id="lastName" class="form-control">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Quality</label>
+                                        <input value="" type="text"
+                                               name="quality"  class="form-control">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Released</label>
+                                        <input value="{{ $movie['Released'] }}" type="text"
+                                               name="released" class="form-control">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                        </div>
                         <div class="form-actions right">
                             <button type="button" class="btn default">Cancel</button>
                             <button type="submit" class="btn blue">

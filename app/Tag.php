@@ -11,6 +11,6 @@ class Tag extends Model
         return $this->morphedByMany(Movie::class,'taggable');
     }
     public function episodes(){
-        return $this->morphedByMany(Movie::class,'taggable');
+        return $this->morphedByMany(Episode::class,'taggable');
     }
 }

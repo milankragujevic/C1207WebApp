@@ -27,5 +27,8 @@ class GroupSeed extends Seeder
         \App\Group::create([
             'group_name'=>'Recommend'
         ]);
+        \App\Group::create([
+            'group_name'=>'Cinema'
+        ]);
     }
 }

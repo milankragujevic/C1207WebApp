@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Banner;
 use App\Group;
 use App\Movie;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class IndexController extends Controller
     {
         $latestMovies= Movie::whereType('movie')->orderBy('updated_at','desc')->take(12)->get();
         $latestSeries=Movie::whereType('series')->orderBy('updated_at','desc')->take(12)->get();
-        return view('index',compact('latestMovies','latestSeries'));
+        $banner=Banner::take(6)->get();
+        return view('index',compact('latestMovies','latestSeries','banner'));
     }
 
     /**
@@ -30,15 +32,15 @@ class IndexController extends Controller
     public function latestmovie()
     {
         $title='Latest Movie';
-        $latestMovie=Movie::whereType('movie')->orderBy('updated_at','desc')->paginate(20);
-        return view('movie_list',compact('title','latestMovie'));
+        $listMovie=Movie::whereType('movie')->orderBy('updated_at','desc')->paginate(30);
+        return view('movie_list',compact('title','listMovie'));
     }
 
     public function latestseries()
     {
         $title='Latest Series';
-        $latestMovie=Movie::whereType('series')->orderBy('updated_at','desc')->paginate(20);
-        return view('movie_list',compact('title','latestMovie'));
+        $listMovie=Movie::whereType('series')->orderBy('updated_at','desc')->paginate(30);
+        return view('movie_list',compact('title','listMovie'));
     }
 
     public function recommend(){

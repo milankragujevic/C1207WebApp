@@ -56,7 +56,7 @@ class MovieController extends Controller
 
     public function enable($id)
     {
-        $movie = Movie::find($id);
+        $movie = Movie::withTrashed()->find($id);
         if ($movie->trashed()) {
             $movie->restore();
             return back();
@@ -78,13 +78,22 @@ class MovieController extends Controller
     public function create(Request $request)
     {
         $imdbID = trim($request->get('imdbId'));
-        $movie = Movie::whereImdbCode($imdbID)->first();
-        if (!isset($movie)) {
+        $movie1 = Movie::whereImdbCode($imdbID)->first();
+        if (!isset($movie1)) {
             $json = file_get_contents('http://www.omdbapi.com/?i=' . $imdbID . '&plot=full&r=json');
             $movie = json_decode($json, true);
             if ($movie['Response'] !== 'True') {
                 $error = 'Wrong IMDB id !';
                 return view('admin.imdbrequest')->with('errorMovie', $error);
+            }
+            if ($movie['Type']=='episode'){
+                if (!empty(Movie::whereImdbCode($movie['seriesID'])->first())){
+                    $movie1=Movie::whereImdbCode($movie['seriesID'])->first();
+                    $img = \Intervention\Image\Facades\Image::make($movie['Poster'])->save(public_path('images/episode/poster/') . str_slug($movie1->name.' '.$movie['Title']) . '.jpg');
+                return view('admin.episode.episode_add')->with('movie1',$movie1)->with('movie',$movie);
+                }else{
+                    return back()->with('errorMovie','Bạn cần tạo movie trước khi tạo episode');
+                }
             }
             $img = \Intervention\Image\Facades\Image::make($movie['Poster'])->save(public_path('images/poster/') . str_slug($movie['Title']) . '.jpg');
             $request->session()->put('imdbId', $imdbID);

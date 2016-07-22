@@ -20,7 +20,7 @@
                                     <div class="view effect">
                                         <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
                                         <div class="mask">
-                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
+                                            <a href="movie-detail.html" class="info" title="Click to watch free {{ $item->name }} online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
                                         </div>
                                     </div>
                                     <div class="clear"></div>
@@ -28,20 +28,36 @@
                                         <h3>{{ $item->name }}</h3>
                                     </a>
                                     <div class="please-vote-star">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        @if($item->rating!=0)
+                                            @for($x=1;$x<=$item->rating/2;$x++)
+                                                <i class="fa fa-star"></i>
+                                            @endfor
+                                            @if($item->rating/2 - ($x-1)>=0.5)
+                                                <i class="fa fa-star"></i>
+                                                {{-- */$x++;/* --}}
+                                            @else
+                                                {{-- */$x--;/* --}}
+                                            @endif
+                                            @while($x<5)
+                                                <i class="fa fa-star-o"></i>
+                                                {{-- */$x++;/* --}}
+                                            @endwhile
+                                        @else
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        @endif
                                     </div>
-                                    <span>IMDB: 8.5</span>
+                                    <span>IMDB: {{ $item->rating }}</span>
                                 </div>
                             </div>
                         @endforeach
                     </div>
                     @endforeach
                     <center>
-                        <p><a href="series-movies.html" title="View all series movie" class="view-more"> View more series movie </a></p>
+                        <p><a href="{{ url('/hot') }}" title="View all hot movie" class="view-more"> View more hot movie </a></p>
                     </center>
                 </div>
                 <!-- Requested Movies -->
@@ -56,33 +72,49 @@
                     @foreach($requestedMovie->chunk(6) as $chunked)
                     <div class="row">
                         @foreach($chunked as $item)
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                            <div class="post">
-                                <div class="view effect">
-                                    <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
-                                    <div class="mask">
-                                        <a href="movie-detail.html" class="info" title="Click to watch free {{ $item->name }} online"><img src="images/play_button_64.png" alt="Click to watch free {{ $item->name }} online"/></a>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="post">
+                                    <div class="view effect">
+                                        <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
+                                        <div class="mask">
+                                            <a href="movie-detail.html" class="info" title="Click to watch free {{ $item->name }} online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
+                                        </div>
                                     </div>
+                                    <div class="clear"></div>
+                                    <a href="movie-detail.html">
+                                        <h3>{{ $item->name }}</h3>
+                                    </a>
+                                    <div class="please-vote-star">
+                                        @if($item->rating!=0)
+                                            @for($x=1;$x<=$item->rating/2;$x++)
+                                                <i class="fa fa-star"></i>
+                                            @endfor
+                                            @if($item->rating/2 - ($x-1)>=0.5)
+                                                <i class="fa fa-star"></i>
+                                                {{-- */$x++;/* --}}
+                                            @else
+                                                {{-- */$x--;/* --}}
+                                            @endif
+                                            @while($x<5)
+                                                <i class="fa fa-star-o"></i>
+                                                {{-- */$x++;/* --}}
+                                            @endwhile
+                                        @else
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        @endif
+                                    </div>
+                                    <span>IMDB: {{ $item->rating }}</span>
                                 </div>
-                                <div class="clear"></div>
-                                <a href="movie-detail.html">
-                                    <h3>{{ $item->name }}</h3>
-                                </a>
-                                <div class="please-vote-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <span>IMDB: {{ $item->rating }}</span>
                             </div>
-                        </div>
                             @endforeach
                     </div>
                     @endforeach
                     <center>
-                        <p><a href="series-movies.html" title="View all series movie" class="view-more"> View more series movie >></a></p>
+                        <p><a href="{{ url('requested') }}" title="View all requested movie" class="view-more"> View more requested movie </a></p>
                     </center>
                 </div>
                 <!---- Start Widget ---->
@@ -97,7 +129,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <ul>
-                                <li><a href="#">free movies</a></li>
+                                <li><a href="{{ url('/tags/free-movie') }}">free movies</a></li>
                                 <li><a href="#">watch free movies online</a></li>
                                 <li><a href="#">cinema movies</a></li>
                                 <li><a href="#">tv series</a></li>

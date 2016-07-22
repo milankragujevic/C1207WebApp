@@ -255,19 +255,35 @@
                                     <div class="view effect">
                                         <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
                                         <div class="mask">
-                                            <a href="movie-detail.html" class="info" title="Click to watch free {{ $item->name }} online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
+                                            <a href="{{ url('/movie/'.$item->slug) }}" class="info" title="Click to watch free {{ $item->name }} online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
                                         </div>
                                     </div>
                                     <div class="clear"></div>
-                                    <a href="movie-detail.html">
+                                    <a href="{{ url('/movie/'.$item->slug) }}">
                                         <h3>{{ $item->name }}</h3>
                                     </a>
                                     <div class="please-vote-star">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        @if($item->rating!=0)
+                                        @for($x=1;$x<=$item->rating/2;$x++)
+                                            <i class="fa fa-star"></i>
+                                        @endfor
+                                        @if($item->rating/2 - ($x-1)>=0.5)
+                                                <i class="fa fa-star"></i>
+                                                {{-- */$x++;/* --}}
+                                            @else
+                                                {{-- */$x--;/* --}}
+                                            @endif
+                                        @while($x<5)
+                                            <i class="fa fa-star-o"></i>
+                                                {{-- */$x++;/* --}}
+                                        @endwhile
+                                            @else
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        @endif
                                     </div>
                                     <span>IMDB: {{ $item->rating }}</span>
                                 </div>

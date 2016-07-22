@@ -96,7 +96,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div id="logo">
-                            <div class="logo"><a href="http://smovies.tv"><img src="{{ asset('css/glide.theme.css') }}" alt="Logo Smovies.tv"/></a></div>
+                            <div class="logo"><a href="http://smovies.tv"><img src="{{ asset('images/logo.png') }}" alt="Logo Smovies.tv"/></a></div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -125,47 +125,47 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
-                                    <li class="active"><a href="index.html">Home</a></li>
-                                    <li><a href="cinema-movies.html">Cinema Movies</a></li>
-                                    <li><a href="series-movies.html">TV Series</a></li>
-                                    <li><a href="latest-movies.html">Latest Movies</a></li>
-                                    <li><a href="movie-detail.html">Top IMDB</a></li>
+                                    <li class="active"><a href="{{  url('/') }}">Home</a></li>
+                                    <li><a href="{{ url('/cinema') }}">Cinema Movies</a></li>
+                                    <li><a href="{{ url('/tvseries') }}">TV Series</a></li>
+                                    <li><a href="{{ url('/latestmovie') }}">Latest Movies</a></li>
+                                    <li><a href="{{ url('/topimdb') }}">Top IMDB</a></li>
                                     <li class="dropdown">
                                         <a href="javascrip:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genres<i class="fa fa-caret-down"></i></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Horror</a></li>
-                                            <li><a href="#">War</a></li>
-                                            <li><a href="#">Western</a></li>
-                                            <li><a href="#">Adventure</a></li>
-                                            <li><a href="#">Sci-Fi</a></li>
-                                            <li><a href="#">Drama</a></li>
-                                            <li><a href="#">Comedy</a></li>
-                                            <li><a href="#">Romance</a></li>
-                                            <li><a href="#">Animation</a></li>
-                                            <li><a href="#">Sport</a></li>
-                                            <li><a href="#">Musical</a></li>
-                                            <li><a href="#">Talk-Show</a></li>
-                                            <li><a href="#">Reality-TV</a></li>
-                                            <li><a href="#">Documentary</a></li>
-                                            <li><a href="#">Biography</a></li>
+                                            <li><a href="{{ url('/genre/action') }}">Action</a></li>
+                                            <li><a href="{{ url('/genre/horror') }}">Horror</a></li>
+                                            <li><a href="{{ url('/genre/war') }}">War</a></li>
+                                            <li><a href="{{ url('/genre/Western') }}">Western</a></li>
+                                            <li><a href="{{ url('/genre/Adventure') }}">Adventure</a></li>
+                                            <li><a href="{{ url('/genre/sci-fi') }}">Sci-Fi</a></li>
+                                            <li><a href="{{ url('/genre/drama') }}">Drama</a></li>
+                                            <li><a href="{{ url('/genre/comedy') }}">Comedy</a></li>
+                                            <li><a href="{{ url('/genre/romance') }}">Romance</a></li>
+                                            <li><a href="{{ url('/genre/Animation') }}">Animation</a></li>
+                                            <li><a href="{{ url('/genre/Sport') }}">Sport</a></li>
+                                            <li><a href="{{ url('/genre/Musical') }}">Musical</a></li>
+                                            <li><a href="{{ url('/genre/Talk-Show') }}">Talk-Show</a></li>
+                                            <li><a href="{{ url('/genre/Reality-TV') }}">Reality-TV</a></li>
+                                            <li><a href="{{ url('/genre/Documentary') }}">Documentary</a></li>
+                                            <li><a href="{{ url('/genre/Biography') }}">Biography</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
                                         <a href="javascrip:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Country<i class="fa fa-caret-down"></i></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Asia</a></li>
-                                            <li><a href="#">China</a></li>
-                                            <li><a href="#">France</a></li>
-                                            <li><a href="#">HongKong</a></li>
-                                            <li><a href="#">India</a></li>
-                                            <li><a href="#">Japan</a></li>
-                                            <li><a href="#">Korea</a></li>
-                                            <li><a href="#">Taiwan</a></li>
-                                            <li><a href="#">Thailand</a></li>
-                                            <li><a href="#">United Kingdom</a></li>
-                                            <li><a href="#">United States</a></li>
-                                            <li><a href="#">Other</a></li>
+                                            <li><a href="{{ url('/country/asia') }}">Asia</a></li>
+                                            <li><a href="{{ url('/country/china') }}">China</a></li>
+                                            <li><a href="{{ url('/country/france') }}">France</a></li>
+                                            <li><a href="{{ url('/country/hongkong') }}">HongKong</a></li>
+                                            <li><a href="{{ url('/country/india') }}">India</a></li>
+                                            <li><a href="{{ url('/country/japan') }}">Japan</a></li>
+                                            <li><a href="{{ url('/country/korea') }}">Korea</a></li>
+                                            <li><a href="{{ url('/country/taiwan') }}">Taiwan</a></li>
+                                            <li><a href="{{ url('/country/thailand') }}">Thailand</a></li>
+                                            <li><a href="{{ url('/country/UK') }}">United Kingdom</a></li>
+                                            <li><a href="{{ url('/country/USA') }}">United States</a></li>
+                                            <li><a href="{{ url('/country/other') }}">Other</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -193,7 +193,7 @@
                         <div class="wid-header">
                             <h5>Welcome</h5>
                         </div>
-                        <div class="logo"><a href="http://smovies.tv"><img src="images/logo.png" alt="Logo Smovies.tv"/></a></div>
+                        <div class="logo"><a href="http://smovies.tv"><img src="{{ asset('images/logo.png') }}" alt="Logo Smovies.tv"/></a></div>
                         <p>Smovies.tv is the best movie site, where you can watch free movies online & tv series online and download the latest movies without registration. No surveys and only instant streaming of movies. The latest movies and highest quality for you. Enjoy your favorite movies with smovies.tv</p>
                     </div>
                 </div>

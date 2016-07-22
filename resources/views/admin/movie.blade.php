@@ -160,6 +160,11 @@
                                             <a href="{{ url('admin/movie/'.$item->id) }}"
                                                class="btn btn-sm btn-default btn-circle btn-editable"><i
                                                         class="fa fa-desktop"></i> Detail   </a>
+                                            @if($item->type=='series')
+                                                <a href="{{ url('admin/episode/movie/'.$item->id) }}"
+                                                   class="btn btn-sm btn-default btn-circle btn-editable"><i
+                                                            class="fa fa-desktop"></i>Episode   </a>
+                                                @endif
                                         </td>
                                     </tr>
                                         @endforeach

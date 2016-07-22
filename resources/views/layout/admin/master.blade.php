@@ -16,7 +16,7 @@
     <!-- END PAGE LEVEL PLUGINS -->
     @yield('pageCss')
 </head>
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md page-sidebar-fixed">
 <!-- BEGIN HEADER -->
 <div class="page-header navbar navbar-fixed-top">
     <!-- BEGIN HEADER INNER -->
@@ -414,6 +414,23 @@
                         <i class="icon-home"></i>
                         <span class="title">Dashboard</span>
                         <span class="arrow"></span>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{ url('admin/') }}" class="nav-link ">
+                                    <span class="title">User Data</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{ url('admin/dashboard2') }}" class="nav-link ">
+                                    <span class="title">Analytics</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{ url('admin/dashboard3') }}" class="nav-link ">
+                                    <span class="title">Dashboard3</span>
+                                </a>
+                            </li>
+                        </ul>
                     </a>
                     {{--UL of sub dashboard--}}
                     {{--<ul class="sub-menu">--}}
@@ -461,6 +478,24 @@
                         </li>
 
                         <li class="nav-item  ">
+                            <a href="{{ url('admin/movie/') }}" class="nav-link ">
+                                <span class="title">Requested Movie</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item  ">
+                            <a href="{{ url('admin/movie/') }}" class="nav-link ">
+                                <span class="title">Banner</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item  ">
+                            <a href="{{ url('admin/movie/') }}" class="nav-link ">
+                                <span class="title">Link Die</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item  ">
                             <a href="ui_buttons.html" class="nav-link ">
                                 <span class="title">Update Slug</span>
                             </a>
@@ -494,19 +529,44 @@
                     </ul>
                 </li>
 
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-diamond"></i>
+                        <span class="title">Star</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="ui_colors.html" class="nav-link ">
+                                <span class="title">Add Star</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="ui_general.html" class="nav-link ">
+                                <span class="title">Star List</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="ui_buttons.html" class="nav-link ">
+                                <span class="title">Update Slug</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="heading">
-                    <h3 class="uppercase">Support</h3>
+                    <h3 class="uppercase">Staff manager</h3>
                 </li>
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-diamond"></i>
-                        <span class="title">Link Die</span>
+                        <span class="title">Add Staff</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-diamond"></i>
-                        <span class="title">Help Request</span>
+                        <span class="title">Staff List</span>
                     </a>
                 </li>
             </ul>

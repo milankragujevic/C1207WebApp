@@ -11,146 +11,56 @@
                         <div class="row">
                             <div class="title">
                                 <center>
-                                    <h2>LATEST MOVIES</h2>
+                                    <h2>{{ $title }}</h2>
                                 </center>
                             </div>
                         </div>
+                        @foreach($listMovie->chunk(6) as $chunked)
                         <div class="row">
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                <div class="post">
-                                    <div class="view effect">
-                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
-                                        <div class="mask">
-                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
+                            @foreach($chunked as $item)
+                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                    <div class="post">
+                                        <div class="view effect">
+                                            <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
+                                            <div class="mask">
+                                                <a href="movie-detail.html" class="info" title="Click to watch free {{ $item->name }} online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <a href="movie-detail.html">
-                                        <h3>Lethal Weapon 4</h3>
-                                    </a>
-                                    <div class="please-vote-star">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <span>IMDB: 8.5</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                <div class="post">
-                                    <div class="view effect">
-                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
-                                        <div class="mask">
-                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
+                                        <div class="clear"></div>
+                                        <a href="movie-detail.html">
+                                            <h3>{{ $item->name }}</h3>
+                                        </a>
+                                        <div class="please-vote-star">
+                                            @if($item->rating!=0)
+                                                @for($x=1;$x<=$item->rating/2;$x++)
+                                                    <i class="fa fa-star"></i>
+                                                @endfor
+                                                @if($item->rating/2 - ($x-1)>=0.5)
+                                                    <i class="fa fa-star"></i>
+                                                    {{-- */$x++;/* --}}
+                                                @else
+                                                    {{-- */$x--;/* --}}
+                                                @endif
+                                                @while($x<5)
+                                                    <i class="fa fa-star-o"></i>
+                                                    {{-- */$x++;/* --}}
+                                                @endwhile
+                                            @else
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            @endif
                                         </div>
+                                        <span>IMDB: {{ $item->rating }}</span>
                                     </div>
-                                    <div class="clear"></div>
-                                    <a href="movie-detail.html">
-                                        <h3>Lethal Weapon 4</h3>
-                                    </a>
-                                    <div class="please-vote-star">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <span>IMDB: 8.5</span>
                                 </div>
-                            </div>
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                <div class="post">
-                                    <div class="view effect">
-                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
-                                        <div class="mask">
-                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <a href="movie-detail.html">
-                                        <h3>Lethal Weapon 4</h3>
-                                    </a>
-                                    <div class="please-vote-star">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <span>IMDB: 8.5</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                <div class="post">
-                                    <div class="view effect">
-                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
-                                        <div class="mask">
-                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <a href="movie-detail.html">
-                                        <h3>Lethal Weapon 4</h3>
-                                    </a>
-                                    <div class="please-vote-star">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <span>IMDB: 8.5</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                <div class="post">
-                                    <div class="view effect">
-                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
-                                        <div class="mask">
-                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <a href="movie-detail.html">
-                                        <h3>Lethal Weapon 4</h3>
-                                    </a>
-                                    <div class="please-vote-star">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <span>IMDB: 8.5</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                <div class="post">
-                                    <div class="view effect">
-                                        <img class="thumb" src="images/1.jpg" alt="Watch Free Film_Name Online" title="Watch Free Film_Name Online">
-                                        <div class="mask">
-                                            <a href="movie-detail.html" class="info" title="Click to watch free Film_Name online"><img src="images/play_button_64.png" alt="Click to watch free Film_Name online"></a>
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <a href="movie-detail.html">
-                                        <h3>Lethal Weapon 4</h3>
-                                    </a>
-                                    <div class="please-vote-star">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <span>IMDB: 8.5</span>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
+                        @endforeach
                         <center><div class="pagination">
-                                <a href="#" class="page gradient">first</a><a href="#" class="page gradient">2</a><a href="#" class="page gradient">3</a><span class="page active">4</span><a href="#" class="page gradient">5</a><a href="#" class="page gradient">6</a><a href="#" class="page gradient">last</a>
+                                {!! $listMovie->render() !!} }}
                             </div></center>
                     </div>
                 </div>

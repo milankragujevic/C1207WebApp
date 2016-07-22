@@ -11,7 +11,7 @@ class Episode extends Model
     protected $dates=['deleted_at'];
     protected $touches = ['movie'];
     protected $fillable=['movie_id','imdb_code','name','slug','season','description',
-    'rating','quality','released'];
+    'rating','quality','released','poster','created_by','updated_by'];
     public function movie(){
         return $this->belongsTo(Movie::class);
     }
@@ -24,7 +24,7 @@ class Episode extends Model
     }
 
     public function tags(){
-        return $this->morphedToMany(Tag::class,'taggable');
+        return $this->morphToMany(Tag::class,'taggable');
     }
     public function errors(){
         return $this->morphMany(Error::class,'errorable');

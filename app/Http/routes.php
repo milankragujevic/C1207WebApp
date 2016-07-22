@@ -23,14 +23,23 @@ Route::get('/', function () {
 //    $returnImage = Image::make($image);
 //    return $returnImage->response();
 //});
-Route::get('/{slug}','MovieController@show');
-
+Route::get('/movie/{slug}','MovieController@show');
 Route::get('play/{slug}/{epislug?}','MovieController@play');
-Route::get('ajax/recommend','IndexController@recommend');
 Route::get('/','IndexController@index');
 Route::get('latestmovie','IndexController@latestmovie');
 Route::get('latestseries','IndexController@latestseries');
-Route::get('play/{id}','PlayerController@index');
+
+//Filter
+Route::get('/genre/{genre}','FilterController@genre');
+Route::get('/director/{director}','FilterController@director');
+Route::get('/star/{star}','FilterController@star');
+Route::get('/country/{country}','FilterController@country');
+Route::get('/cinema','FilterController@cinema');
+Route::get('/tvseries','FilterController@tvseries');
+Route::get('/topimdb','FilterController@topimdb');
+Route::get('/hot','FilterController@hot');
+Route::get('/requested','FilterController@requested');
+Route::get('/tags/{tag}','FilterController@tag');
 
 Route::get('/home', 'HomeController@index');
 //Route::get('admin',function (){
@@ -51,9 +60,13 @@ $this->post('admin/password/reset', 'Auth\PasswordController@reset');
 //Admin routes
 Route::get('admin/movie/newmovie','Admin\MovieController@newMovie');
 Route::resource('admin/movie','Admin\MovieController');
-Route::get('admin','Admin\IndexController@index');
 Route::get('admin/enable/{id}','Admin\MovieController@enable');
 Route::get('admin/disable/{id}','Admin\MovieController@disable');
+Route::get('admin/','Admin\DashboardController@dashboard1');
+Route::get('admin/dashboard2','Admin\DashboardController@dashboard2');
+Route::get('admin/dashboard3','Admin\DashboardController@dashboard3');
+Route::resource('admin/episode','Admin\EpisodeController');
+Route::get('admin/episode/movie/{imdb}','Admin\EpisodeController@index');
 //Admin search
 Route::get('admin/search','Admin\SearchController@search');
 //Admin Group
@@ -61,9 +74,10 @@ Route::get('admin/search','Admin\SearchController@search');
 //User Manager
 Route::resource('admin/user','Admin\UserController');
 //Ajax Route
-Route::get('ajax/movie/{id}','AjaxController@showMovie');
+Route::get('ajax/movie/id/{id}','AjaxController@showMovie');
 Route::get('ajax/movie/feature','AjaxController@feature');
 Route::get('ajax/movie/topview','AjaxController@topView');
 Route::get('ajax/movie/mostfav','AjaxController@mostFav');
 Route::get('ajax/movie/toprate','AjaxController@topRate');
+Route::get('ajax/search/{name}','AjaxController@search');
 
