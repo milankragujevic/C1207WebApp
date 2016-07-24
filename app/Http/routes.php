@@ -28,6 +28,8 @@ Route::get('play/{slug}/{epislug?}','MovieController@play');
 Route::get('/','IndexController@index');
 Route::get('latestmovie','IndexController@latestmovie');
 Route::get('latestseries','IndexController@latestseries');
+Route::get('/request-movie','IndexController@createRequest');
+Route::post('/storerequest','IndexController@storeRequest');
 
 //Filter
 Route::get('/genre/{genre}','FilterController@genre');
@@ -80,4 +82,8 @@ Route::get('ajax/movie/topview','AjaxController@topView');
 Route::get('ajax/movie/mostfav','AjaxController@mostFav');
 Route::get('ajax/movie/toprate','AjaxController@topRate');
 Route::get('ajax/search/{name}','AjaxController@search');
+
+//Movie Request Route
+Route::get('admin/request','Admin\MovieRequestController@show');
+Route::get('googlelink/{code}','GoogleLinkController@index');
 

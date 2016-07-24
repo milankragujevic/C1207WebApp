@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Banner;
 use App\Group;
 use App\Movie;
+use App\Movierequest;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -47,6 +48,21 @@ class IndexController extends Controller
     public function recommend(){
         $movie=Movie::take(12)->get();
         return $movie;
+    }
+
+    public function createRequest(){
+        return view('movie_request');
+    }
+
+    public function storeRequest(Request $request){
+        Movierequest::create([
+            'name'=>$request->input('name'),
+            'name'=>$request->input('imdb'),
+            'name'=>$request->input('email'),
+            'message'=>$request->input('message'),
+            'status'=>0,
+        ]);
+        return back();
     }
 
 }

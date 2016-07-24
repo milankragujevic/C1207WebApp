@@ -3,6 +3,8 @@
 @endsection
 
 @section('content')
+    <script src="{{ asset('js/jwplayer.js') }}"></script>
+    <script>jwplayer.key="RZXhBDa/OH0pznbqTglt2e2r9lZFuV8wEJnFBQ==";</script>
     <section id="container">
         <div class="container-fluid">
             <div class="row">
@@ -15,12 +17,7 @@
                         <div class="player-embed">
                             <div id="movie-loading" style="display: none;">
                             </div>
-                            <div id="movie" class="movie-player">
-                                <div style="position:relative; padding-bottom:56.25%; overflow:hidden;">
-                                    <iframe src="//content.jwplatform.com/players/kX6Xr8wp-rulQ5XkJ.html" width="100%"
-                                            height="100%" frameborder="0" scrolling="auto" allowfullscreen
-                                            style="position:absolute;"></iframe>
-                                </div>
+                            <div id="movie" style="width: 1000px" class="movie-player">
                             </div>
                             <div class="bar-player">
                                 <a href="javascrip:void(0);" class="btn-lightbulb lightSwitcher">
@@ -59,16 +56,41 @@
             </div>
         </div>
     </section>
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"
-            integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-    <script>
-        /*menu-server*/
-        $('.menu-server .play-server2').click(function () {
-            document.getElementById('frame-player').src = '{{ $googleLink }}';
-        });
-        $('.menu-server .play-server1').click(function () {
-            document.getElementById('frame-player').src = '{{ $openloadLink }}';
+    <div id="myElement"></div>
+    <script type="text/JavaScript">
+        var playerInstance = jwplayer("movie");
+        playerInstance.setup({
+            skin:{
+                name:'five'
+            },
+            //source:[{file:'{!!$linkGoogle!!}',label:'HD',"defaut":"true"},{file:'{!!$linkGoogle!!}',label:'SD'}],
+            aspectratio:'16:9',
+            width:'100%',
+            type:'mp4',
+            file: '{!!$linkGoogle!!}'
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"
+            integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+
+    <script>
+
+        /*menu-server*/
+        $('.menu-server .play-server1').click(function () {
+
+            var playerInstance = jwplayer("movie");
+            playerInstance.setup({
+
+                aspectratio:'16:9',
+                width:'100%',
+                type:'mp4',
+                file: '{!!$linkGoogle!!}'
+            });
+        });
+        $('.menu-server .play-server2').click(function () {
+            $('#movie').html('<iframe id="frame-player" class="frame-player" src="{{$linkOpenload}}" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true" scrolling="no"></iframe>');
+        });
+    </script>
+
 
 @endsection

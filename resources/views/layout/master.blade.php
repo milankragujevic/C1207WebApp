@@ -107,7 +107,7 @@
                                 <!-- Khung hien thi phan search -->
                                 <div id="suggesstion-box"></div>
                             </form>
-                            <a class="movies-request" href="movies-request.html" title="Send movies request please!">Movies Request<i class="fa fa-pencil"></i></a>
+                            <a class="movies-request" href="{{ url('/movierequest') }}" title="Send movies request please!">Movies Request<i class="fa fa-pencil"></i></a>
                         </div>
                     </div>
                 </div>
