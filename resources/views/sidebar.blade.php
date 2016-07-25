@@ -129,17 +129,9 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <ul>
-                                <li><a href="{{ url('/tags/free-movie') }}">free movies</a></li>
-                                <li><a href="#">watch free movies online</a></li>
-                                <li><a href="#">cinema movies</a></li>
-                                <li><a href="#">tv series</a></li>
-                                <li><a href="#">action</a></li>
-                                <li><a href="#">horror</a></li>
-                                <li><a href="#">animation</a></li>
-                                <li><a href="#">comedy</a></li>
-                                <li><a href="#">romance</a></li>
-                                <li><a href="#">free movies online</a></li>
-                                <li><a href="#">smovies.tv</a></li>
+                                @foreach($latestTag as $tag)
+                                <li><a href="{{ url('/tags/'.$tag->id) }}">{{ $tag->tag_content }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

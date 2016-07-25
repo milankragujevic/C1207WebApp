@@ -15,7 +15,12 @@ class FilterController extends Controller
 {
     public function genre($genre){
         $title=$genre;
-        $listMovie=Genre::whereName($genre)->first()->movies()->orderBy('updated_at','desc')->paginate(30);
+        $genre=Genre::whereName($genre)->first();
+        if (isset($genre)) {
+            $listMovie = $genre->movies()->orderBy('updated_at', 'desc')->paginate(30);
+        }else{
+            $listMovie=Movie::whereName('Haha')->paginate(30);
+        }
         return view('movie_list',compact('title','listMovie'));
     }
     public function director($director){
@@ -49,7 +54,7 @@ class FilterController extends Controller
         return view('movie_list',compact('title','listMovie'));
     }
     public function hot(){
-        $title='TV Series';
+        $title='Hot Movie';
         $listMovie=Group::whereGroupName('Hot')->first()->movies()->orderBy('updated_at','desc')->paginate(30);
         return view('movie_list',compact('title','listMovie'));
     }
@@ -61,8 +66,11 @@ class FilterController extends Controller
     }
 
     public function tag($tag){
-        $title=$tag;
-        $listMovie=Tag::whereTagContent($tag)->first()->movies()->orderBy('updated_at','desc')->paginate(30);
+        $tag=Tag::find($tag);
+        $title=$tag->tag_content;
+        if (isset($tag)) {
+            $listMovie = $tag->movies()->orderBy('updated_at', 'desc')->paginate(30);
+        }
         return view('movie_list',compact('title','listMovie'));
     }
 

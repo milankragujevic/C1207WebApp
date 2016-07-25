@@ -1,5 +1,5 @@
 @extends('layout.admin.master')
-@section('title','Movie')
+@section('title','Edit Movie')
 @section('pageCss')
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <link href="../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css"/>

@@ -142,40 +142,24 @@
                             <th>Movie Name</th>
                             <th>Link IMDB</th>
                             <th>Message</th>
+                            <th>Status</th>
                             <th>Done</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($movieRequest as $mvrequest)
                         <tr>
-                            <td>john@example.com</td>
-                            <td>Spider man</td>
-                            <td>http://www.imdb.com/title/tt1431045/</td>
-                            <td>abc...</td>
-                            <td><input type="checkbox"></td>
+                            <td>{{ $mvrequest->email }}</td>
+                            <td>{{ $mvrequest->name }}</td>
+                            <td>{{ $mvrequest->imdb }}</td>
+                            <td>{{ $mvrequest->message }}</td>
+                            <td>{!!  $mvrequest->status==0?'<span class="label label-warning">Undone</span>':'<span class="label label-success">Done</span>' !!}</td>
+                            <td><a role="button" class="btn btn-default" href="{{ url('/admin/request/'.$mvrequest->id) }}">Done Toggle</a></td>
                         </tr>
-                        <tr>
-                            <td>john@example.com</td>
-                            <td>Spider man</td>
-                            <td>http://www.imdb.com/title/tt1431045/</td>
-                            <td>abc...</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>john@example.com</td>
-                            <td>Spider man</td>
-                            <td>http://www.imdb.com/title/tt1431045/</td>
-                            <td>abc...</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                    <ul class="pagination">
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                    </ul>
+                    {!! $movieRequest->render() !!}
                     <br>
                     <button type="button" class="btn btn-success">Update Table</button>
                 </div>

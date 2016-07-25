@@ -142,7 +142,7 @@
                                             <li>Released: {{ $item->released }}</li>
                                             <li>Created by: {{ $item->created_by }}</li>
                                             <li>Updated by: {{ $item->updated_by }}</li>
-                                            <li>ViewCount: {{ isset($item->analytics)?$item->analytics->view:'' }}</li>
+                                            <li>ViewCount: {{ isset($item->analytics)? $item->analytics()->count():0 }}</li>
                                             </ul>
                                         </td>
                                         <td><a href="{{ url('admin/movie/'.$item->id.'/edit') }}"

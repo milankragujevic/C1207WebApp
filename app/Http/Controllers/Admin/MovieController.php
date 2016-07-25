@@ -328,5 +328,28 @@ class MovieController extends Controller
         return back();
     }
 
+    public function tagsManager($id=null){
+        if ($id==null) {
+            $tags = Tag::orderBy('tag_content')->get();
+            return view('admin.tags')->with('tags', $tags);
+        }
+        if (isset($id)){
+            $tag=Tag::find($id);
+            if (isset($tag)){
+                $option=$tag->option;
+                if ($option=='show'){
+                    $tag->option='hide';
+                    $tag->save();
+                }
+                if ($option=='hide' || empty($tag->option)){
+                    $tag->option='show';
+                    $tag->save();
+                }
+                return back();
+            }else{
+                return back();
+            }
+        }
+    }
 
 }

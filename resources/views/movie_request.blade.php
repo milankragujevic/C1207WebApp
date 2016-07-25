@@ -18,7 +18,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2" for="txtname">Enter movie name: (*)</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="movie" class="form-control" id="txtname" placeholder="Enter movie name..." required="required">
+                                        <input type="text" name="name" class="form-control" id="txtname" placeholder="Enter movie name..." required="required">
                                     </div>
                                 </div>
                                 <div class="form-group">

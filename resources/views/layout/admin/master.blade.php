@@ -478,14 +478,20 @@
                         </li>
 
                         <li class="nav-item  ">
-                            <a href="{{ url('admin/movie/') }}" class="nav-link ">
+                            <a href="{{ url('admin/request/') }}" class="nav-link ">
                                 <span class="title">Requested Movie</span>
                             </a>
                         </li>
 
                         <li class="nav-item  ">
-                            <a href="{{ url('admin/movie/') }}" class="nav-link ">
+                            <a href="{{ url('admin/banner/') }}" class="nav-link ">
                                 <span class="title">Banner</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item  ">
+                            <a href="{{ url('admin/tags/') }}" class="nav-link ">
+                                <span class="title">Tags Manager</span>
                             </a>
                         </li>
 

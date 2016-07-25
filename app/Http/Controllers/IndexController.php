@@ -21,9 +21,9 @@ class IndexController extends Controller
     {
         $latestMovies= Movie::whereType('movie')->orderBy('updated_at','desc')->take(12)->get();
         $latestSeries=Movie::whereType('series')->orderBy('updated_at','desc')->take(12)->get();
-        //$banner=Banner::take(6)->get();
-        $banner='';
-        return view('index',compact('latestMovies','latestSeries','banner'));
+        $recommend=Group::whereGroupName('Recommend')->first()->movies()->orderBy('updated_at','decs')->take(12)->get();
+        $banners=Banner::whereMovieId(1)->get();
+        return view('index',compact('latestMovies','latestSeries','banners','recommend'));
     }
 
     /**
@@ -57,8 +57,8 @@ class IndexController extends Controller
     public function storeRequest(Request $request){
         Movierequest::create([
             'name'=>$request->input('name'),
-            'name'=>$request->input('imdb'),
-            'name'=>$request->input('email'),
+            'imdb'=>$request->input('imdb'),
+            'email'=>$request->input('email'),
             'message'=>$request->input('message'),
             'status'=>0,
         ]);

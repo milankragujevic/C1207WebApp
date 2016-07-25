@@ -69,6 +69,10 @@ Route::get('admin/dashboard2','Admin\DashboardController@dashboard2');
 Route::get('admin/dashboard3','Admin\DashboardController@dashboard3');
 Route::resource('admin/episode','Admin\EpisodeController');
 Route::get('admin/episode/movie/{imdb}','Admin\EpisodeController@index');
+Route::get('admin/tags/{id?}','Admin\MovieController@tagsManager');
+Route::get('admin/banner/{id?}','Admin\BannerController@index');
+Route::get('admin/banner-edit/{id}','Admin\BannerController@edit');
+Route::post('admin/banner-update/{id}','Admin\BannerController@update');
 //Admin search
 Route::get('admin/search','Admin\SearchController@search');
 //Admin Group
@@ -84,6 +88,6 @@ Route::get('ajax/movie/toprate','AjaxController@topRate');
 Route::get('ajax/search/{name}','AjaxController@search');
 
 //Movie Request Route
-Route::get('admin/request','Admin\MovieRequestController@show');
+Route::get('admin/request/{id?}','Admin\MovieRequestController@show');
 Route::get('googlelink/{code}','GoogleLinkController@index');
 

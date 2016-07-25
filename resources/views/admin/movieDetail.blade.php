@@ -55,7 +55,7 @@
                                 <label class="control-label col-md-3">Images:</label>
                                 <div class="col-md-9">
                                     <p class="form-control-static"><img height="230px" width="155px" src="
-{{asset('images/poster/'.$movie->movieimages()->whereType('poster')->first()->link)}}
+{{asset('images/poster/'.$movie->poster)}}
                                                 " />  </p>
                                 </div>
                             </div>

@@ -52,8 +52,8 @@
     </div>
     <![endif]-->
     <!--[if lt IE 9]>
-    <script src="js/html5.js"></script>
-    <script src="js/css3-mediaqueries.js"></script>
+    <script src="{{ asset('js/html5.js')}}"></script>
+    <script src="{{ asset('js/css3-mediaqueries.js')}}"></script>
     <![endif]-->
     <link rel="stylesheet" href="{{ asset('css/glide.core.css') }}">
     <link rel="stylesheet" href="{{ asset('css/glide.theme.css') }}">
@@ -96,7 +96,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div id="logo">
-                            <div class="logo"><a href="http://smovies.tv"><img src="{{ asset('images/logo.png') }}" alt="Logo Smovies.tv"/></a></div>
+                            <div class="logo"><a href="{{ url('/') }}"><img src="{{ asset('images/logo.png') }}" alt="Logo Smovies.tv"/></a></div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -107,7 +107,7 @@
                                 <!-- Khung hien thi phan search -->
                                 <div id="suggesstion-box"></div>
                             </form>
-                            <a class="movies-request" href="{{ url('/movierequest') }}" title="Send movies request please!">Movies Request<i class="fa fa-pencil"></i></a>
+                            <a class="movies-request" href="{{ url('/request-movie') }}" title="Send movies request please!">Movies Request<i class="fa fa-pencil"></i></a>
                         </div>
                     </div>
                 </div>
@@ -127,12 +127,12 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
-                                    <li class="active"><a href="{{  url('/') }}">Home</a></li>
-                                    <li><a href="{{ url('/cinema') }}">Cinema Movies</a></li>
-                                    <li><a href="{{ url('/tvseries') }}">TV Series</a></li>
-                                    <li><a href="{{ url('/latestmovie') }}">Latest Movies</a></li>
-                                    <li><a href="{{ url('/topimdb') }}">Top IMDB</a></li>
-                                    <li class="dropdown">
+                                    <li class="{{ Request::is('/')?'active':'' }}"><a href="{{  url('/') }}">Home</a></li>
+                                    <li class="{{ Request::is('cinema')?'active':'' }}"><a href="{{ url('/cinema') }}">Cinema Movies</a></li>
+                                    <li class="{{ Request::is('tvseries')?'active':'' }}"><a href="{{ url('/tvseries') }}">TV Series</a></li>
+                                    <li class="{{ Request::is('latestmovie')?'active':'' }}"><a href="{{ url('/latestmovie') }}">Latest Movies</a></li>
+                                    <li class="{{ Request::is('topimdb')?'active':'' }}"><a href="{{ url('/topimdb') }}">Top IMDB</a></li>
+                                    <li class="dropdown {{ Request::is('genre/*')?'active':'' }}" >
                                         <a href="javascrip:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genres<i class="fa fa-caret-down"></i></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{{ url('/genre/action') }}">Action</a></li>
@@ -147,13 +147,13 @@
                                             <li><a href="{{ url('/genre/Animation') }}">Animation</a></li>
                                             <li><a href="{{ url('/genre/Sport') }}">Sport</a></li>
                                             <li><a href="{{ url('/genre/Musical') }}">Musical</a></li>
-                                            <li><a href="{{ url('/genre/Talk-Show') }}">Talk-Show</a></li>
+                                            <li><a href="{{ url('/genre/Talk-Showmas') }}">Talk-Show</a></li>
                                             <li><a href="{{ url('/genre/Reality-TV') }}">Reality-TV</a></li>
                                             <li><a href="{{ url('/genre/Documentary') }}">Documentary</a></li>
                                             <li><a href="{{ url('/genre/Biography') }}">Biography</a></li>
                                         </ul>
                                     </li>
-                                    <li class="dropdown">
+                                    <li class="dropdown {{ Request::is('country/*')?'active':'' }}">
                                         <a href="javascrip:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Country<i class="fa fa-caret-down"></i></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{{ url('/country/asia') }}">Asia</a></li>
@@ -257,7 +257,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="copyright">
                         <p>Copyright © 2016. All Rights Reserved - <a href="http://smovies.tv">Smovies.tv</a></p>
-                        <div class="back-to-top"><a href="#logo"><img src="images/Back-To-Top.png" alt="Back to top Smovies.tv" title="Back to top Smovies.tv"/></a></div>
+                        <div class="back-to-top"><a href="#logo"><img src="{{ asset('/images/Back-To-Top.png') }}" alt="Back to top Smovies.tv" title="Back to top Smovies.tv"/></a></div>
                     </div>
                 </div>
             </div>
@@ -266,8 +266,17 @@
     <div class="last-footer">
         <h6>Watch Free Movies Online & TV Series Online at Smovies.tv</h6>
     </div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=503333826533478";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 </footer>
 </div>
+<div id="shadow"></div>pl
 <script src="{{ asset('js/css3-mediaqueries.js') }}"></script>
 <script src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>

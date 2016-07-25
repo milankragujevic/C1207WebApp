@@ -20,7 +20,7 @@
                             <div id="movie" style="width: 1000px" class="movie-player">
                             </div>
                             <div class="bar-player">
-                                <a href="javascrip:void(0);" class="btn-lightbulb lightSwitcher">
+                                <a href="javascript:void(0);" class="btn-lightbulb lightSwitcher">
                                     <i class="fa fa-lightbulb-o"></i>
                                     <span>Turn off the lights</span>
                                 </a>
@@ -28,9 +28,9 @@
                                     <i class="fa fa-comments"></i>
                                     <span>Comment</span>
                                 </a>
-                                <a href="javascrip:void(0);" class="btn-view">
+                                <a href="javascript:void(0);" class="btn-view">
                                     <i class="fa fa-eye"></i>
-                                    <span>View</span>
+                                    <span>View :{{ $view }}</span>
                                 </a>
                             </div>
                             <div class="menu-server">
@@ -47,16 +47,12 @@
                             </div>
                         </div>
                         <div id="comment">
-                            <div class="fb-comments"
-                                 data-href="https://developers.facebook.com/docs/plugins/comments#imdb"
-                                 data-numposts="5" data-colorscheme="light"></div>
-                        </div>
+                            <div class="fb-comments" data-href="{{ url()->current() }}" data-numposts="5" data-colorscheme="dark"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <div id="myElement"></div>
     <script type="text/JavaScript">
         var playerInstance = jwplayer("movie");
         playerInstance.setup({

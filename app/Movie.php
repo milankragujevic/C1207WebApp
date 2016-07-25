@@ -38,8 +38,8 @@ class Movie extends Model
         return $this->morphMany(Error::class,'errorable');
     }
 
-    public function analytic(){
-        return $this->morphOne(Analytics::class,'analyticable');
+    public function analytics(){
+        return $this->morphMany(Analytic::class,'analyticable');
     }
     public function banner(){
         $this->hasOne(Banner::class);
