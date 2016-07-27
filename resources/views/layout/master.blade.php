@@ -30,9 +30,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/favicon.ico">
-    <link rel="icon" type="image/png" href="images/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('/images/favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ asset('/images/favicon.ico') }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Watch Free Movies & TV Series Online | Smovies.tv">
     <meta property="og:url" content="http://smovies.tv/">
@@ -288,7 +288,7 @@
     </script>
 </footer>
 </div>
-<div id="shadow"></div>pl
+<div id="shadow"></div>
 <script src="{{ asset('js/css3-mediaqueries.js') }}"></script>
 <script src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>

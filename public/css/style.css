@@ -922,6 +922,7 @@ textarea {
     margin-left: 10px;
     cursor: pointer;
     font-size: 18px;
+    border:0px;
 }
 .player-embed {
     position: relative;
