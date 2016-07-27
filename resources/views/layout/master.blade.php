@@ -15,9 +15,9 @@
     <!-- Basic Page Needs
        ================================================== -->
     <meta charset="utf-8">
-    <title>@yield('title') - Smovies.tv | Watch Free Movies & TV Series Online</title>
+    <title>Smovies.tv | Watch Free @yield('title') Movies Online</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="robots" content="noindex,nofollow">
+    <meta name="robots" content="index,follow">
     <meta http-equiv="content-language" content="vi">
     <meta name="referrer" content="no-referrer">
     <meta name="description" content="Free HD movies online & tv series online and Download the latest movies without Registration at Smovies.tv">
@@ -39,6 +39,7 @@
     <meta property="og:image" content="images/maxresdefault.jpg">
     <meta property="og:description" content="Free HD movies online & tv series online and Download the latest movies without Registration at Smovies.tv">
     <meta property="og:site_name" content="smovies.tv">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- CSS
        ================================================== -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -69,7 +70,7 @@
                         <ul>
                             <li class="mail">
                                 <i class="fa fa-envelope-o"></i>
-                                <p><a href="mailto:smovies.tv@gmail.com">smovies.tv@gmail.com</a></p>
+                                <p><a href="mailto:contact@smovies.tv">contact@smovies.tv</a></p>
                             </li>
                         </ul>
                         <h1>Watch Free Movies & TV Series Online</h1>
@@ -77,6 +78,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="language">
                             <ul>
+                                <li><a target="_blank" class="img-fb" href="https://www.facebook.com/Smovies.tv"><img alt="Follow us on Facebook" src="{{ asset('/images/facebook.png') }}" ></a></li>
                                 <li>
                                     <p>Language</p>
                                 </li>
@@ -101,8 +103,8 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="pull-right">
-                            <form method="get" action="/search" id="search"  >
-                                <input id="search-box" type="text" size="40" placeholder="Search movie name, actor..." />
+                            <form method="get" action="{{ url('/search') }}" id="search"  >
+                                <input id="search-box" name="query" type="text" size="40" placeholder="Search movie name, actor..." />
                                 <input type="submit" value="Search">
                                 <!-- Khung hien thi phan search -->
                                 <div id="suggesstion-box"></div>
@@ -207,13 +209,13 @@
                         <div class="widget-content">
 
                             <ul>
-                                <li><a href="index.html">> Home </a></li>
-                                <li><a href="#">> Watch free movies online </a></li>
-                                <li><a href="#">> Watch free tv-series online </a></li>
-                                <li><a href="dmca.html">> DMCA </a></li>
-                                <li><a href="advertising.html">> Advertising </a></li>
-                                <li><a href="movies-request.html">> Movies Request </a></li>
-                                <li><a href="contact.html">> Contact </a></li>
+                                <li><a href="{{ url('/') }}">> Home </a></li>
+                                <li><a href="{{ url('/latestmovie') }}">> Watch free movies online </a></li>
+                                <li><a href="{{ url('/latestseries') }}">> Watch free tv-series online </a></li>
+                                <li><a href="{{ url('/dmca') }}">> DMCA </a></li>
+                                <li><a href="{{ url('/ads') }}">> Advertising </a></li>
+                                <li><a href="{{ url('/request-movie') }}">> Movies Request </a></li>
+                                <li><a href="{{ url('/contact') }}">> Contact </a></li>
                             </ul>
 
                         </div>
@@ -240,7 +242,7 @@
                         <div class="widget-content">
 
                             <div class="fb-page"
-                                 data-href="https://www.facebook.com/imdb"
+                                 data-href="https://www.facebook.com/Smovies.tv"
                                  data-width="340"
                                  data-hide-cover="false"
                                  data-show-facepile="true"></div>
@@ -274,6 +276,16 @@
             js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=503333826533478";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-81337315-1', 'none');
+        ga('send', 'pageview');
+
+    </script>
 </footer>
 </div>
 <div id="shadow"></div>pl
@@ -283,7 +295,6 @@
 <script src="{{ asset('js/glide.min.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/custom.ajax.js') }}"></script>
-<!--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578761e96a1a3518"></script>-->
 </body>
 </html>
 </html>

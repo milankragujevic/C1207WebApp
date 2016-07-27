@@ -122,7 +122,7 @@
                         </div>
                         <div class="details">
                             <div class="number">
-                                <span data-counter="counterup" data-value="1349">1349</span>
+                                <span data-counter="counterup" data-value="1349">{{ $count }}</span>
                             </div>
                             <div class="desc"> Requested Movies </div>
                         </div>

@@ -1,15 +1,13 @@
 @extends('layout.master')
-@section('title')
-@endsection
-
+@section('title'){{ $movie->name }} @endsection
 @section('content')
     <script src="{{ asset('js/jwplayer.js') }}"></script>
-    <script>jwplayer.key="RZXhBDa/OH0pznbqTglt2e2r9lZFuV8wEJnFBQ==";</script>
+    <script>jwplayer.key = "RZXhBDa/OH0pznbqTglt2e2r9lZFuV8wEJnFBQ==";</script>
     <section id="container">
         <div class="container-fluid">
             <div class="row">
                 <div id="main-content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="contact">
+                    <div class="contact2">
                         <div class="alert-warning" role="alert"><i class="fa fa-warning"></i> If you can't see the video
                             and
                             only hear the sound, please switch to Firefox/Chrome/Safari for better performance.
@@ -47,23 +45,36 @@
                             </div>
                         </div>
                         <div id="comment">
-                            <div class="fb-comments" data-href="{{ url()->current() }}" data-numposts="5" data-colorscheme="dark"></div>
+                            <div class="fb-comments" data-href="{{ url()->current() }}" data-numposts="5"
+                                 data-colorscheme="dark"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <script type="text/JavaScript">
+    <script>
         var playerInstance = jwplayer("movie");
         playerInstance.setup({
-            skin:{
-                name:'five'
-            },
-            //source:[{file:'{!!$linkGoogle!!}',label:'HD',"defaut":"true"},{file:'{!!$linkGoogle!!}',label:'SD'}],
-            aspectratio:'16:9',
-            width:'100%',
-            type:'mp4',
-            file: '{!!$linkGoogle!!}'
+//            skin:{
+//                name:'five'
+//            },
+            source: [{
+                file: '{!!$linkGoogle['720p']!!}',
+                label: "720p HD",
+                type: 'mp4',
+                "default": "true"
+            },{
+                file: '{!!$linkGoogle['480p']!!}',
+                label: "480p HD",
+                type: 'mp4'
+            },{
+                file: '{!!$linkGoogle['360p']!!}',
+                label: "360p HD",
+                type: 'mp4'
+            }],
+            aspectratio: '16:9',
+            width: '100%'
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"
@@ -77,9 +88,9 @@
             var playerInstance = jwplayer("movie");
             playerInstance.setup({
 
-                aspectratio:'16:9',
-                width:'100%',
-                type:'mp4',
+                aspectratio: '16:9',
+                width: '100%',
+                type: 'mp4',
                 file: '{!!$linkGoogle!!}'
             });
         });

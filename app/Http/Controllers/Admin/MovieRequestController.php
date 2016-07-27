@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 class MovieRequestController extends Controller
 {
     public function show($id=null){
+        $count=Movierequest::count();
         if (isset($id)){
             $movieRequest=Movierequest::find($id);
             $status=$movieRequest->status;
@@ -25,6 +26,6 @@ class MovieRequestController extends Controller
             return back();
         }
         $movieRequest=Movierequest::orderBy('updated_at','desc')->paginate(20);
-        return view('admin.requested_page')->with('movieRequest',$movieRequest);
+        return view('admin.requested_page',compact('movieRequest','count'));
     }
 }

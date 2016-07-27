@@ -46,20 +46,32 @@ class MovieController extends Controller
             $view = Analytic::create(['view_count' => 1]);
             $movie->analytics()->save($view);
             $view = $movie->analytics()->count();
-            $linkGoogle = file_get_contents(url('/googlelink/'.$codeGoogle));
+            //$linkGoogle = file_get_contents(url('/googlelink/'.$codeGoogle));
+            $linkGoogle = file_get_contents(url('/googlelink/'.'0BzWDDSOVVu0AalU2bHFFdUJLdEU'));
             $linkGoogle = rtrim($linkGoogle, ',');
             $linkGoogle = '[' . $linkGoogle . ']';
             $linkGoogle = json_decode($linkGoogle, true);
-            $linkGoogle = $linkGoogle[0]['file'];
+        $temp=collect();
+        foreach ($linkGoogle as $key=>$value){
+            $temp->put($value['label'],$value['file']);
+        };
+        $linkGoogle=$temp;
             $codeOpenload = $movie->movielinks()->whereProvider('Openload')->first()->link;
             $linkOpenload = 'https://openload.co/embed/' . $codeOpenload . '/';
+
         } catch (\Exception $ex) {
             $view='';
-            $linkGoogle = '';
+            $linkGoogle = collect();
+            $linkGoogle['720p']='';
+            $linkGoogle['480p']='';
+            $linkGoogle['360p']='';
             $linkOpenload = '';
         }
         return view('movie_play', compact('movie', 'linkGoogle', 'linkOpenload', 'view'));
     }
 
+    public function getLinkAjax(){
+
+    }
 
 }

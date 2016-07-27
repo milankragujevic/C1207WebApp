@@ -1,8 +1,5 @@
 @extends('layout.master')
-@section('title')
-    {{ $movie->name }}
-    @endsection
-
+@section('title'){{ $movie->name }} @endsection
 @section('content')
     <section id="container">
         <div class="container-fluid">
@@ -18,8 +15,8 @@
                                     <ul class="ul-detail-movie">
                                         <li><h2>{{ $movie->name }}</h2></li>
                                         <li><p>Genre:
-                                            @foreach($movie->genresmodel as $genre)
-                                                <a href="{{ url('/genre/'.$genre->name) }}">{{ $genre->name }}</a>,
+                                                @foreach($movie->genresmodel as $genre)
+                                                    <a href="{{ url('/genre/'.$genre->name) }}">{{ $genre->name }}</a>,
                                                 @endforeach
                                             </p></li>
                                         <li><p>Director:
@@ -34,15 +31,17 @@
                                                 @endforeach
                                             </p></li>
                                         <li><p>Runtime: {{ $movie->runtime }}</p></li>
-                                        <li><p>IMDB: <a href="{{ 'http://www.imdb.com/title/'.$movie->imdb_code.'/' }}" target="_blank">{{ $movie->rating }}/10</a></p></li>
+                                        <li><p>IMDB: <a href="{{ 'http://www.imdb.com/title/'.$movie->imdb_code.'/' }}"
+                                                        target="_blank">{{ $movie->rating }}/10</a></p></li>
                                         <li><p>Released: {{ $movie->released }}</p></li>
-                                        <li><p>Language:<a href="#">{{ $movie->language }}</a> </p></li>
+                                        <li><p>Language:<a href="#">{{ $movie->language }}</a></p></li>
                                         <li><p>Country: @foreach(preg_split('/[\s,]+/',$movie->country) as $item)
                                                     <a href="{{url('/country/'.$item)}}">{{$item}}</a>
                                                 @endforeach</p></li>
                                         <li><p>Tags:
-                                            @foreach($movie->tags as $tag)
-                                                <a href="{{url('/tags/'.$tag->tag_content)}}">{{ $tag->tag_content }}</a>,
+                                                @foreach($movie->tags as $tag)
+                                                    <a href="{{url('/tags/'.$tag->tag_content)}}">{{ $tag->tag_content }}</a>
+                                                    ,
                                                 @endforeach
                                             </p></li>
                                         <li class="star">
@@ -70,18 +69,39 @@
                                                 @endif
                                             </div>
                                         </li>
-                                        <li><a class="button bt1" href="{{ url('/play/'.$movie->slug) }}">Play</a><a class="button bt1" href="#" data-toggle="modal" data-target="#trailer">Trailer</a></li>
-                                        @if(isset($allEpisode))
-                                            @foreach($allEpisode as $season=>$list)
-                                                <h2>Season: {{ $season }}</h2>
-                                        <li class="eps-more">
-                                            @foreach($list as $item)
-                                            <a class="btn btn-eps" href="{{ url('/play/'.$movie->slug.'/'.$item->slug) }}">Eps {{ $item->name }}</a>
-                                                @endforeach
-                                        </li>
-                                            @endforeach
-                                            @endif
+                                        <li><a class="button bt1" href="{{ url('/play/'.$movie->slug) }}">Play</a><a
+                                                    class="button bt1" href="#" data-toggle="modal"
+                                                    data-target="#trailer">Trailer</a></li>
+                                        {{--@if(isset($allEpisode))--}}
+                                            {{--@foreach($allEpisode as $season=>$list)--}}
+                                                {{--<h2>Season: {{ $season }}</h2>--}}
+                                                {{--<li class="eps-more">--}}
+                                                    {{--@foreach($list as $item)--}}
+                                                        {{--<a class="btn btn-eps"--}}
+                                                           {{--href="{{ url('/play/'.$movie->slug.'/'.$item->slug) }}">Eps {{ $item->name }}</a>--}}
+                                                    {{--@endforeach--}}
+                                                {{--</li>--}}
+                                            {{--@endforeach--}}
+                                        {{--@endif--}}
                                     </ul>
+                                    @if(isset($allEpisode))
+                                        <ul class="nav nav-tabs">
+                                            @foreach($allEpisode as $season => $list)
+                                            <li role="presentation">
+                                                <a href="#s{{ $season }}" role="tab" data-toggle="tab">Season {{ $season }}</a>
+                                            </li>
+                                                @endforeach
+                                        </ul>
+                                        <div class="tab-content">
+                                            @foreach($allEpisode as $season => $list)
+                                            <div id="s{{ $season }}" class="tab-pane fade" role="tabpanel">
+                                                @foreach($list as $item)
+                                                <a class="btn-eps" href="{{ url('/play/'.$movie->slug.'/'.$item->slug) }}">Eps {{ $item->name }}</a>
+                                                    @endforeach
+                                            </div>
+                                                @endforeach
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="news-movies">
@@ -95,14 +115,19 @@
                                                 <!-- Modal content-->
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
                                                         <h4 class="modal-title">Trailer {{ $movie->name }}</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <iframe src="{{ 'https://www.youtube.com/embed/'.$movie->trailer }}" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" scrolling="no"></iframe>
+                                                        <iframe src="{{ 'https://www.youtube.com/embed/'.$movie->trailer }}"
+                                                                webkitallowfullscreen="" mozallowfullscreen=""
+                                                                allowfullscreen="" scrolling="no"></iframe>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-sumit-request" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-sumit-request"
+                                                                data-dismiss="modal">Close
+                                                        </button>
                                                     </div>
                                                 </div>
 
@@ -127,53 +152,58 @@
                                 </center>
                             </div>
                         </div>
-@foreach($relatedMovie->chunk(6) as $chunked)
-                        <div class="row">
+                        @foreach($relatedMovie->chunk(6) as $chunked)
                             <div class="row">
-                                @foreach($chunked as $item)
-                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                        <div class="post">
-                                            <div class="view effect">
-                                                <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
-                                                <div class="mask">
-                                                    <a href="{{ url('/movie/'.$item->slug) }}" class="info" title="Click to watch free {{ $item->name }} online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
+                                <div class="row">
+                                    @foreach($chunked as $item)
+                                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                            <div class="post">
+                                                <div class="view effect">
+                                                    <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}"
+                                                         alt="Watch Free {{ $item->name }} Online"
+                                                         title="Watch Free {{ $item->name }} Online"/>
+                                                    <div class="mask">
+                                                        <a href="{{ url('/movie/'.$item->slug) }}" class="info"
+                                                           title="Click to watch free {{ $item->name }} online"><img
+                                                                    src="{{ asset('images/play_button_64.png') }}"
+                                                                    alt="Click to watch free {{ $item->name }} online"/></a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="clear"></div>
-                                            <a href="{{ url('/movie/'.$item->slug) }}">
-                                                <h3>{{ $item->name }}</h3>
-                                            </a>
-                                            <div class="please-vote-star">
-                                                @if($item->rating!=0)
-                                                    @for($x=1;$x<=$item->rating/2;$x++)
-                                                        <i class="fa fa-star"></i>
-                                                    @endfor
-                                                    @if($item->rating/2 - ($x-1)>=0.5)
-                                                        <i class="fa fa-star"></i>
-                                                        {{-- */$x++;/* --}}
+                                                <div class="clear"></div>
+                                                <a href="{{ url('/movie/'.$item->slug) }}">
+                                                    <h3>{{ $item->name }}</h3>
+                                                </a>
+                                                <div class="please-vote-star">
+                                                    @if($item->rating!=0)
+                                                        @for($x=1;$x<=$item->rating/2;$x++)
+                                                            <i class="fa fa-star"></i>
+                                                        @endfor
+                                                        @if($item->rating/2 - ($x-1)>=0.5)
+                                                            <i class="fa fa-star"></i>
+                                                            {{-- */$x++;/* --}}
+                                                        @else
+                                                            {{-- */$x--;/* --}}
+                                                        @endif
+                                                        @while($x<5)
+                                                            <i class="fa fa-star-o"></i>
+                                                            {{-- */$x++;/* --}}
+                                                        @endwhile
                                                     @else
-                                                        {{-- */$x--;/* --}}
-                                                    @endif
-                                                    @while($x<5)
                                                         <i class="fa fa-star-o"></i>
-                                                        {{-- */$x++;/* --}}
-                                                    @endwhile
-                                                @else
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                @endif
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                    @endif
+                                                </div>
+                                                <span>IMDB: {{ $item->rating }}</span>
                                             </div>
-                                            <span>IMDB: {{ $item->rating }}</span>
                                         </div>
-                                    </div>
-                                @endforeach
-                            </div>
+                                    @endforeach
+                                </div>
 
-                        </div>
-    @endforeach
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

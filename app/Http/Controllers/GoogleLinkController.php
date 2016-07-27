@@ -115,12 +115,9 @@ class GoogleLinkController extends Controller
         }
         return $linkDownload;
     }
-
-
     public function index($code){
         $drive=new DriveLink('https://drive.google.com/file/d/'.$code.'/view');
         $result=$drive->Drive();
         return $result;
     }
-
 }

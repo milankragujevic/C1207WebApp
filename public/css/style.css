@@ -178,7 +178,7 @@ img {
     /* ie8 */
 }
 a {
-    color: #000;
+    color: #2e2e2e;
     text-decoration: none;
 }
 a:hover {
@@ -257,7 +257,7 @@ body {
 /* ---------------------------------------------------------------------------- */
 
 header .top-bar {
-    background-color: #000;
+    background: url(../images/a.png);
     color: #fff;
 }
 header .top-bar ul li {
@@ -336,7 +336,7 @@ nav .active a {
     background-color: #fcab2b;
 }
 .navbar-default {
-    background-color: #000;
+    background-color: #2e2e2e;
     text-align: center;
     border: 0px;
     border-bottom: 4px solid #fcab2b;
@@ -354,7 +354,7 @@ nav .active a {
     background-color: #fcab2b !important;
 }
 .dropdown-menu {
-    background-color: #000;
+    background-color: #2e2e2e;
 }
 @media (min-width: 768px) {
     header .language {
@@ -417,7 +417,7 @@ nav .active a {
 }
 .title {
     border-bottom: 2px solid #fcab2b;
-    background-color: #000;
+    background-color: #2e2e2e;
 	margin-bottom:10px;
 }
 .title h2 {
@@ -477,7 +477,7 @@ nav .active a {
 .widget .wid-header {
     border-bottom: 1px solid #fcab2b;
     margin-bottom: 20px;
-    background-color: #000;
+    background-color: #2e2e2e;
 }
 .widget .wid-header h5,
 .widget .wid-header h4 {
@@ -511,7 +511,7 @@ nav .active a {
     padding: 5px 10px;
 }
 .wid-tag a:hover {
-    background: #000;
+    background: #2e2e2e;
 }
 .widget.wid-post {} .widget.wid-post .post {} .widget.wid-post img {
     float: left;
@@ -608,7 +608,7 @@ footer .copyright .copyright-info {
     font-style: italic;
 }
 footer .bottom-footer {
-    background-color: #000;
+    background-color: #1d1d1d;
     padding: 10px;
 }
 footer .bottom-footer p {
@@ -819,6 +819,13 @@ a.button.bt2 {
     padding: 10px;
 	margin-bottom:20px;
 }
+.contact2{
+    background-color: rgba(0, 0, 0, 0.6);
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+    padding: 10px;
+    margin:20px;
+}
 .contact h2 {
     font-size: 34px;
     font-weight: 500;
@@ -851,7 +858,7 @@ textarea {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     background-color: #fff;
-    color: #000;
+    color: #2e2e2e;
     border: 1px solid #5f5f5f;
     padding: 10px;
     margin: 5px 0 25px 0;
@@ -875,7 +882,8 @@ textarea {
     height: 600px;
 }
 .bar-player {
-    padding-top: 10px;
+    padding: 10px;
+	background-color:#222222;
 }
 .bar-player i {
     color: #fff;
@@ -894,6 +902,9 @@ textarea {
     font-size: 18px;
     color: #fcab2b;
 }
+.menu-server{
+	background-color:#222222;
+}
 .menu-server i,
 .menu-server span {
     color: #fff;
@@ -901,8 +912,9 @@ textarea {
     padding-top: 5px;
 }
 .menu-server .server1,
-.menu-server .server2 {
-    margin-top: 20px;
+.menu-server .server2{ 
+	padding:10px;
+	border-top:1px solid #eeeeee;
 }
 .menu-server .btn-play {
     background-color: #fcab2b;
@@ -989,7 +1001,7 @@ ol li a {
 ol li a:hover {
     text-decoration: underline;
     background-color: #fcab2b !important;
-    color: #000 !important;
+    color: #2e2e2e !important;
 }
 ol li:hover {
     background-color: #fcab2b;
@@ -1032,3 +1044,30 @@ ol li:hover {
 .ul-detail-movie p, .ul-detail-movie h2 {color:#000;font-weight:bold;}
 .ul-detail-movie p a{color:#fcab2b !important;}
 .article-movie-detail{margin-bottom:20px;}
+.modal-title{color:#000;}
+#suggesstion-box{
+    position: absolute;
+    z-index: 9999;
+    background-color: #fff;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 150px;
+    display:none;
+}
+#suggesstion-box ul li:hover{
+    background-color: #fcab2b;
+    border-bottom:1px solid #eeeeee;
+}
+#suggesstion-box ul li:hover a{
+    color:#2e2e2e;
+}
+
+.tab-content{
+    padding: 20px;
+    line-height: 40px;
+}
+
+.img-fb{
+    cursor: pointer;
+
+}

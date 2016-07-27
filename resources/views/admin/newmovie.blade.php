@@ -5,6 +5,9 @@
     <link href="{{ asset('assets/global/plugins/typeahead/typeahead.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/global/css/components-md.min.css') }}" rel="stylesheet" id="style_components"
           type="text/css">
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="{{ asset('assets/global/plugins/bootstrap-toastr/toastr.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
     <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->
         <div class="page-content">
@@ -41,7 +44,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Slug</label>
-                                        <input type="text" id="slug" name="slug" value="{{ str_slug($movie['Title']) }}" class="form-control"
+                                        <input type="text" id="slug" name="slug" value="{{ str_slug($movie['Title']) }}"
+                                               class="form-control"
                                                placeholder="movie-name">
                                     </div>
                                 </div>
@@ -167,7 +171,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Cover</label><br>
-                                        <input type="text" name="cover" class="form-control" value="{{ $movie['Poster'] }}">
+                                        <input type="text" name="cover" class="form-control"
+                                               value="{{ $movie['Poster'] }}">
                                         <a href="javascript:;" class="thumbnail">
                                             <img src="{!! url('images/poster/'.str_slug($movie['Title']).'.jpg') !!}"
                                                  style="width: 182px ; height: 268px; display: block">
@@ -194,14 +199,15 @@
                                 <div class="col-md-6 ">
                                     <div class="form-group">
                                         <label class="control-label">Rating</label>
-                                        <input type="text" name="rating" class="form-control" value="{{ $movie['imdbRating'] }}"></div>
+                                        <input type="text" name="rating" class="form-control"
+                                               value="{{ $movie['imdbRating'] }}"></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Tags</label><br>
-                                        <input type="text" name="tags" class="form-control" data-role="tagsinput">
+                                        <input value="{{$tags}}" type="text" name="tags" class="form-control" data-role="tagsinput">
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -228,11 +234,12 @@
                                         <label>Group</label>
                                         <div class="mt-checkbox-inline">
                                             @foreach($groups as $item)
-                                            <label class="mt-checkbox">
-                                                <input type="checkbox" name="group[]" id="inlineCheckbox21" value="{{ $item->id }}"> {{ $item->group_name }}
-                                                <span></span>
-                                            </label>
-                                                @endforeach
+                                                <label class="mt-checkbox">
+                                                    <input type="checkbox" name="group[]" id="inlineCheckbox21"
+                                                           value="{{ $item->id }}"> {{ $item->group_name }}
+                                                    <span></span>
+                                                </label>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -245,49 +252,59 @@
                                         <label class="control-label">Quality</label>
                                         <div class="mt-checkbox-inline">
                                             <label class="mt-checkbox">
-                                                <input type="checkbox" name="quality[]" id="inlineCheckbox21" value="HD"> HD
+                                                <input type="checkbox" name="quality[]" id="inlineCheckbox21"
+                                                       value="HD"> HD
                                                 <span></span>
                                             </label>
                                             <label class="mt-checkbox">
-                                                <input type="checkbox" name="quality[]" id="inlineCheckbox21" value="DVD"> DVD
+                                                <input type="checkbox" name="quality[]" id="inlineCheckbox21"
+                                                       value="DVD"> DVD
                                                 <span></span>
                                             </label>
                                             <label class="mt-checkbox">
-                                                <input type="checkbox" name="quality[]" id="inlineCheckbox21" value="CAM"> CAM
+                                                <input type="checkbox" name="quality[]" id="inlineCheckbox21"
+                                                       value="CAM"> CAM
                                                 <span></span>
                                             </label>
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!--/span-->
-                                {{--<div class="col-md-6">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="control-label">Option</label>--}}
-                                        {{--<div class="md-checkbox">--}}
-                                            {{--<input type="checkbox" name="upcoming" id="checkbox2_1" class="md-check">--}}
-                                            {{--<label for="checkbox2_1">--}}
-                                                {{--<span></span>--}}
-                                                {{--<span class="check"></span>--}}
-                                                {{--<span class="box"></span> Upcomming--}}
-                                            {{--</label>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                <!--/span-->
+                            {{--<div class="col-md-6">--}}
+                            {{--<div class="form-group">--}}
+                            {{--<label class="control-label">Option</label>--}}
+                            {{--<div class="md-checkbox">--}}
+                            {{--<input type="checkbox" name="upcoming" id="checkbox2_1" class="md-check">--}}
+                            {{--<label for="checkbox2_1">--}}
+                            {{--<span></span>--}}
+                            {{--<span class="check"></span>--}}
+                            {{--<span class="box"></span> Upcomming--}}
+                            {{--</label>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            <!--/span-->
                             </div>
                             <h3 class="form-section">Movie Link</h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Google Drive</label>
-                                        <input type="text" name="google_drive" class="form-control" placeholder="drive file id">
+                                        <input id="googleCode" type="text" name="google_drive" class="form-control"
+                                               placeholder="drive file id">
+                                        <span class="input-group-btn">
+                                                            <button id="checkQuality" class="btn red" type="button">Check Quality</button>
+                                                        </span>
+                                        <div class="toast-bottom-center"></div>
+
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Openload</label>
-                                        <input type="text" name="openload" class="form-control" placeholder="openload file id">
+                                        <input type="text" name="openload" class="form-control"
+                                               placeholder="openload file id">
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -314,5 +331,35 @@
     <script src="{{ asset('assets/global/plugins/typeahead/handlebars.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/typeahead/typeahead.bundle.min.js') }}"
             type="text/javascript"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="{{ asset('assets/global/plugins/bootstrap-toastr/toastr.min.js') }}" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <script src="{{ asset('assets/pages/scripts/ui-toastr.min.js') }}" type="text/javascript"></script>
+    <script>
+        function showToastr(data){
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-top-full-width",
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+            toastr.info(data,'Checking code');
+        }
+        $("#checkQuality").click(function () {
+            showToastr("Loading")
+            $.get("/googlelink/"+$("#googleCode").val(),function (data,status) {
+                showToastr(data);
+            });
+        });
+
+    </script>
 @endsection
 @endsection

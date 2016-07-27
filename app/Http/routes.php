@@ -42,6 +42,18 @@ Route::get('/topimdb','FilterController@topimdb');
 Route::get('/hot','FilterController@hot');
 Route::get('/requested','FilterController@requested');
 Route::get('/tags/{tag}','FilterController@tag');
+Route::get('/search','FilterController@search');
+Route::get('dmca',function (){
+    return view('dmca');
+});
+
+Route::get('ads',function (){
+   return view('ads');
+});
+
+Route::get('contact',function (){
+    return view('contact');
+});
 
 Route::get('/home', 'HomeController@index');
 //Route::get('admin',function (){
@@ -89,5 +101,7 @@ Route::get('ajax/search/{name}','AjaxController@search');
 
 //Movie Request Route
 Route::get('admin/request/{id?}','Admin\MovieRequestController@show');
-Route::get('googlelink/{code}','GoogleLinkController@index');
+Route::get('/googlelink/{code}','GoogleLinkController@index');
+//Analytics
+Route::get('analytics','AnalyticsController@index');
 

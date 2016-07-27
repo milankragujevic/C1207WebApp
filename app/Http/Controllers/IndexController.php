@@ -33,7 +33,7 @@ class IndexController extends Controller
      */
     public function latestmovie()
     {
-        $title='Latest Movie';
+        $title='Latest';
         $listMovie=Movie::whereType('movie')->orderBy('updated_at','desc')->paginate(30);
         return view('movie_list',compact('title','listMovie'));
     }

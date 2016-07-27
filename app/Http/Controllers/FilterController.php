@@ -54,13 +54,13 @@ class FilterController extends Controller
         return view('movie_list',compact('title','listMovie'));
     }
     public function hot(){
-        $title='Hot Movie';
+        $title='Hot';
         $listMovie=Group::whereGroupName('Hot')->first()->movies()->orderBy('updated_at','desc')->paginate(30);
         return view('movie_list',compact('title','listMovie'));
     }
 
     public function requested(){
-        $title='Requested Movie';
+        $title='Requested';
         $listMovie=Group::whereGroupName('Requested')->first()->movies()->orderBy('updated_at','desc')->paginate(30);
         return view('movie_list',compact('title','listMovie'));
     }
@@ -74,5 +74,18 @@ class FilterController extends Controller
         return view('movie_list',compact('title','listMovie'));
     }
 
+    public function search(Request $request){
+        $query=$request->input('query');
+        if (!isset($query)){
+            return back();
+        }
+        $listMovie=Movie::where('name','like','%'.$query.'%')->orWhereHas('actors',function ($query1)use($query){
+            $query1->where('name','like','%'.$query.'%');
+        })->orWhereHas('directors',function ($query1)use($query){
+            $query1->where('name','like','%'.$query.'%');
+        })->paginate(30);
+        $title='Result of '.$query;
+        return view('movie_list',compact('title','listMovie'));
+    }
 
 }

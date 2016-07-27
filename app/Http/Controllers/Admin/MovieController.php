@@ -100,9 +100,11 @@ class MovieController extends Controller
             if (isset($movie['totalSeasons'])) {
                 $request->session()->put('totalSeasons', $movie['totalSeasons']);
             }
+            $tags='watch free movies online, free movies, free movie,
+watch free series movies online,'.$movie['Actors'];
             //dd($movie);
             $groups = Group::all();
-            return view('admin.newmovie', compact('groups', 'movie'));
+            return view('admin.newmovie', compact('groups', 'movie','tags'));
         } else {
             $error = 'Movie already added !';
             return view('admin.imdbrequest')->with('errorMovie', $error);

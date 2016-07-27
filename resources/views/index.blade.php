@@ -1,8 +1,5 @@
 @extends('layout.master')
-@section('title')
-    Home
-    @endsection
-
+@section('title')TV series and @endsection
 @section('banner-index-only')
     <section id="banner">
         <div class="container-fluid">
@@ -223,7 +220,6 @@
             </div>
         </div>
     </section>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5181dc394703fed7"
-            async="async"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578761e96a1a3518" async="async"></script>
     <!--////////////////////////////////////End content-->
     @endsection

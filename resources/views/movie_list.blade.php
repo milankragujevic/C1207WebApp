@@ -1,7 +1,5 @@
 @extends('layout.master')
-@section('title')
-
-    @endsection
+@section('title'){{ $title }}@endsection
 @section('content')
     <section id="container">
         <div class="container-fluid">
