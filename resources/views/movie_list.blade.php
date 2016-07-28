@@ -16,7 +16,7 @@
                         @foreach($listMovie->chunk(6) as $chunked)
                         <div class="row">
                             @foreach($chunked as $item)
-                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
                                     <div class="post">
                                         <div class="view effect">
                                             <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
