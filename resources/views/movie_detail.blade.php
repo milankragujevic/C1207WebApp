@@ -40,7 +40,7 @@
                                                 @endforeach</p></li>
                                         <li><p>Tags:
                                                 @foreach($movie->tags as $tag)
-                                                    <a href="{{url('/tags/'.$tag->tag_content)}}">{{ $tag->tag_content }}</a>
+                                                    <a href="{{url('/tags/'.$tag->id)}}">{{ $tag->tag_content }}</a>
                                                     ,
                                                 @endforeach
                                             </p></li>
@@ -69,9 +69,12 @@
                                                 @endif
                                             </div>
                                         </li>
-                                        <li><a class="button bt1" href="{{ url('/play/'.$movie->slug) }}">Play</a><a
-                                                    class="button bt1" href="#" data-toggle="modal"
-                                                    data-target="#trailer">Trailer</a></li>
+                                        <li>
+                                            @if(!isset($allEpisode))
+                                            <a class="button bt1" href="{{ url('/play/'.$movie->slug) }}">Play</a>
+                                            @endif
+                                            <a class="button bt1" href="#" data-toggle="modal" data-target="#trailer">Trailer</a>
+                                        </li>
                                         {{--@if(isset($allEpisode))--}}
                                             {{--@foreach($allEpisode as $season=>$list)--}}
                                                 {{--<h2>Season: {{ $season }}</h2>--}}

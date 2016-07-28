@@ -50,10 +50,10 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <ul class="nav nav-pills">
-                                    <li class="active"><a onclick="ajaxGetContent('featured')" id="featured">Featured</a></li>
-                                    <li><a onclick="ajaxGetContent('topToday')" id="topToday">Top viewed today</a></li>
-                                    <li><a onclick="ajaxGetContent('mostFavorite')" id="mostFavorite">Most Favorite</a></li>
-                                    <li><a onclick="ajaxGetContent('topRat')" id="topRat">Top Rating</a></li>
+                                    <li class="active"><a onclick="ajaxGetContent('feature')" id="featured">Feature</a></li>
+                                    <li><a onclick="ajaxGetContent('toptoday')" id="topToday">Top viewed today</a></li>
+                                    <li><a onclick="ajaxGetContent('topmonth')" id="mostFavorite">Top Month</a></li>
+                                    <li><a onclick="ajaxGetContent('toprating')" id="topRat">Top Rating</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -212,7 +212,7 @@
                         </div>
                         @endforeach
                         <center>
-                            <p><a href="{{ url('/latestseries') }}" title="View all series movie" class="view-more"> View more series movie >></a></p>
+                            <p><a href="{{ url('/tvseries') }}" title="View all series movie" class="view-more"> View more series movie >></a></p>
                         </center>
                     </div>
 

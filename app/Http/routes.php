@@ -94,8 +94,8 @@ Route::resource('admin/user','Admin\UserController');
 //Ajax Route
 Route::get('ajax/movie/id/{id}','AjaxController@showMovie');
 Route::get('ajax/movie/feature','AjaxController@feature');
-Route::get('ajax/movie/topview','AjaxController@topView');
-Route::get('ajax/movie/mostfav','AjaxController@mostFav');
+Route::get('ajax/movie/toptoday','AjaxController@topViewToday');
+Route::get('ajax/movie/topmonth','AjaxController@topViewMonth');
 Route::get('ajax/movie/toprate','AjaxController@topRate');
 Route::get('ajax/search/{name}','AjaxController@search');
 
