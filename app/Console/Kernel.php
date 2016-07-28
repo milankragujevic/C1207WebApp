@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Movielink;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -26,5 +27,17 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        $schedule->call(function(){
+            $movieLink=Movielink::all();
+            foreach ($movieLink as $link){
+                try{
+                    file_get_contents(url('/googlelink/'.$link->link));
+                }catch (\Exception $ex){
+                    $link->status='Unavailable';
+                    $link->save();
+                }
+            }
+        })->daily();
     }
 }

@@ -61,8 +61,8 @@ class DriveLink
         foreach($data as $list) {
             $data2 = explode('|', $list);
             if($data2[0] == 37) {$js    .= '{"label": "1080p", "file": "'.preg_replace("/\/[^\/]+\.google\.com/","/redirector.googlevideo.com",$data2[1]).'"},';}
-            if($data2[0] == 22) {$js    .= '{"label": "720p", "file": "'.preg_replace("/\/[^\/]+\.google\.com/","/redirector.googlevideo.com",$data2[1]).'"},';}
             if($data2[0] == 59) {$js    .= '{"label": "480p", "file": "'.preg_replace("/\/[^\/]+\.google\.com/","/redirector.googlevideo.com",$data2[1]).'"},';}
+            if($data2[0] == 22) {$js    .= '{"label": "720p", "file": "'.preg_replace("/\/[^\/]+\.google\.com/","/redirector.googlevideo.com",$data2[1]).'"},';}
             if($data2[0] == 18) {$js    .= '{"label": "360p", "file": "'.preg_replace("/\/[^\/]+\.google\.com/","/redirector.googlevideo.com",$data2[1]).'"},';}
         }
         return rtrim($js, '|');

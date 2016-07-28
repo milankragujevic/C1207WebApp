@@ -1077,3 +1077,5 @@ ol li:hover {
     width:100%;
     height:300px;
 }
+.nav-pills li{ cursor:pointer;}
+#suggestion-content .please-vote-star{display:none;}

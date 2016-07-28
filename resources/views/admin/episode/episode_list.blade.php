@@ -97,7 +97,7 @@
                                                         <li>ViewCount: {{ isset($item->analytics)?$item->analytics->view:'' }}</li>
                                                     </ul>
                                                 </td>
-                                                <td><a href="{{ url('admin/movie/'.$item->id.'/edit') }}"
+                                                <td><a href="{{ url('admin/episode/'.$item->id.'/edit') }}"
                                                        class="btn btn-sm btn-default btn-circle btn-editable"><i
                                                             class="fa fa-pencil"></i> Edit&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                                                     @if(!$item->trashed())
@@ -109,7 +109,7 @@
                                                            class="btn btn-sm btn-default btn-circle btn-default"><i
                                                                 class="fa fa-pencil"></i> Enable</a>
                                                     @endif
-                                                    <a href="{{ url('admin/movie/'.$item->id) }}"
+                                                    <a href="{{ url('admin/episode/'.$item->id) }}"
                                                        class="btn btn-sm btn-default btn-circle btn-editable"><i
                                                             class="fa fa-desktop"></i> Detail   </a>
                                                 </td>

@@ -357,13 +357,18 @@
         $("#checkQuality").click(function () {
             showToastr("Loading");
             $.get("/googlelink/"+$("#googleCode").val(),function (data,status) {
-                console.log(data);
                 var json = JSON.parse(data);
                 var q = '';
-                $.each(json,function (index,data) {
-                    console.log(data.label);
-                    q+=data.label+" ";
-
+                var array=[];
+                for(a in json){
+                    array.push(a,json[a]);
+                }
+                array.sort(function (a,b) {
+                    return a[0]-b[0];
+                });
+                console.log(array);
+                $.each(array,function (index,data) {
+                    q+=data.label+" "
                 });
                 $("#qualityInfo").text(q);
             });

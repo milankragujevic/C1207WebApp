@@ -16,6 +16,7 @@
           type="text/css">
     <link href="{{ url('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') }}" rel="stylesheet"
           type="text/css">
+    <link href="{{ asset('assets/global/plugins/bootstrap-toastr/toastr.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
     <div class="page-content-wrapper">
@@ -43,6 +44,83 @@
                         <input name="_method" value="PUT" type="hidden">
                         <div class="form-body">
                             <h3 class="form-section">General</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Name</label>
+                                        <input type="text" name="name" class="form-control" value="{{ $movie->name }}">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Slug</label>
+                                        <input type="text" name="slug" class="form-control" value="{{ $movie->slug }}">
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Trailer</label>
+                                            <input type="text" name="trailer" class="form-control" value="{{ $movie->trailer }}">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Rating</label>
+                                            <input type="text" name="rating" class="form-control" value="{{ $movie->rating }}">
+                                        </div>
+                                    </div>
+                                    </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Description</label>
+                                        <textarea type="text" name="description" class="form-control">{{ $movie->description }}</textarea>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Released</label>
+                                        <input type="text" name="released" class="form-control" value="{{ $movie->released }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Rated</label>
+                                        <input type="text" name="rated" class="form-control" value="{{ $movie->rated }}" >
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Language</label>
+                                        <input type="text" name="language" class="form-control" data-role="tagsinput"
+                                               value="{{$movie->language}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Country</label>
+                                        <input type="text" name="country" class="form-control" data-role="tagsinput"
+                                               value="{{$movie->country}}">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Type</label>
+                                        <input type="text" name="type" class="form-control" value="{{ $movie->type }}">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -89,7 +167,12 @@
                                     <div class="form-group">
                                         <label class="control-label">Google Link</label>
                                         <input value="{{ isset($googleLink)?$googleLink->link:'' }}" type="text"
-                                               name="google_link" id="google_link" class="form-control">
+                                               name="google_link" id="googleCode" class="form-control">
+                                        <span class="input-group-btn">
+                                                            <button id="checkQuality" class="btn red" type="button">Check Quality</button>
+                                                        </span>
+                                        <span class="label label-success" id="qualityInfo"></span>
+                                        <div class="toast-bottom-center"></div>
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -111,12 +194,12 @@
                             </button>
                         </div>
                     </form>
-
                     <!-- END FORM-->
                 </div>
             </div>
         </div>
     </div>
+
 @endsection
 @section('pageScript')
     <!-- BEGIN PAGE LEVEL PLUGINS -->
@@ -138,5 +221,38 @@
     <script src="{{ asset('assets/global/plugins/typeahead/handlebars.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/typeahead/typeahead.bundle.min.js') }}"
             type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-toastr/toastr.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/pages/scripts/ui-toastr.min.js') }}" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
+    <script>
+        function showToastr(data){
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-top-full-width",
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+            toastr.info(data,'Checking code');
+        }
+        $("#checkQuality").click(function () {
+            showToastr("Loading");
+            $.get("/googlelink/"+$("#googleCode").val(),function (data,status) {
+                var json = JSON.parse(data);
+                var q = '';
+                $.each(json,function (index,data) {
+                    q+=data.label+" "
+                });
+                $("#qualityInfo").text(q);
+            });
+        });
+
+    </script>
 @endsection

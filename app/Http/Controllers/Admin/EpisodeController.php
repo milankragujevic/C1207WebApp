@@ -90,7 +90,7 @@ class EpisodeController extends Controller
             $episode->tags()->attach($item);
         }
 
-        $movie->movielinks()->saveMany([
+        $episode->movielinks()->saveMany([
             new Movielink(['provider' => 'Google Drive', 'link' => $request->input('google_drive')]),
             new Movielink(['provider' => 'Openload', 'link' => $request->input('openload')])
         ]);
@@ -117,7 +117,10 @@ class EpisodeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $episode=Episode::find($id);
+        $movie= $episode->movie;
+        //dd($episode->movielinks()->whereProvider('Google Drive')->first());
+        return view('admin.episode.episode_edit',compact('episode','movie'));
     }
 
     /**
@@ -129,7 +132,13 @@ class EpisodeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::transaction(function ()use($request,$id){
+            $episode=Episode::find($id);
+            $gglink=$episode->movielinks()->whereProvider('Google Drive')->first();
+            $gglink->link=$request->input('google_drive');
+            $gglink->save();
+        });
+        return back();
     }
 
     /**

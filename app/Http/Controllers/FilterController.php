@@ -52,6 +52,15 @@ class FilterController extends Controller
     }
     public function country($country){
         $title=$country;
+        $popularCountry=['Asia','China','France','Hong Kong','India','Japan','Korea','Thailand','Taiwan','UK','USA'];
+        if ($title=='other'){
+            $listMovie=Movie::where(function ($query)use($popularCountry){
+                foreach ($popularCountry as $country){
+                    $query->where('country','not like','%'.$country.'%');
+                }
+            })->paginate(30);
+            return view('movie_list',compact('title','listMovie'));
+        }
         $listMovie=Movie::where('country','like','%'.$country.'%')->orderBy('updated_at','desc')->paginate(30);
         return view('movie_list',compact('title','listMovie'));
     }

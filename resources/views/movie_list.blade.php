@@ -21,11 +21,11 @@
                                         <div class="view effect">
                                             <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
                                             <div class="mask">
-                                                <a href="movie-detail.html" class="info" title="Click to watch free {{ $item->name }} online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
+                                                <a href="{{ url('/movie/'.$item->slug) }}" class="info" title="Click to watch free {{ $item->name }} online"><img src="{{ asset('images/play_button_64.png') }}" alt="Click to watch free {{ $item->name }} online"/></a>
                                             </div>
                                         </div>
                                         <div class="clear"></div>
-                                        <a href="movie-detail.html">
+                                        <a href="{{ url('/movie/'.$item->slug) }}">
                                             <h3>{{ $item->name }}</h3>
                                         </a>
                                         <div class="please-vote-star">

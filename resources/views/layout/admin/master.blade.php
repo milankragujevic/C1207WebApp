@@ -496,7 +496,7 @@
                         </li>
 
                         <li class="nav-item  ">
-                            <a href="{{ url('admin/movie/') }}" class="nav-link ">
+                            <a href="{{ url('admin/linkdie/') }}" class="nav-link ">
                                 <span class="title">Link Die</span>
                             </a>
                         </li>

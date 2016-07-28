@@ -85,6 +85,7 @@ Route::get('admin/tags/{id?}','Admin\MovieController@tagsManager');
 Route::get('admin/banner/{id?}','Admin\BannerController@index');
 Route::get('admin/banner-edit/{id}','Admin\BannerController@edit');
 Route::post('admin/banner-update/{id}','Admin\BannerController@update');
+Route::get('admin/linkdie','Admin\MovieController@checkLinkDie');
 //Admin search
 Route::get('admin/search','Admin\SearchController@search');
 //Admin Group
