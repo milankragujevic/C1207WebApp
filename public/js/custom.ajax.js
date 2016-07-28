@@ -9,8 +9,7 @@ function ajaxGetContent(e) {
         dataType: 'json',
         success: function (result) {
             var html = '';
-            html += '<div class="suggestion">';
-            html += '        <div class="row">';
+            html += '<div class="row">';
             html += '<div class="title">';
             html += '<center>';
             html += '<h2>SUGGESTION</h2>';
@@ -49,8 +48,11 @@ function ajaxGetContent(e) {
             html += '</ul>';
             html += '</div>';
             html += '</div>';
-            html += '<div class="row" id="suggestion-content">';
+            var i=1;
             $.each(result, function (key, item) {
+                if ((i===1) || (i===7)) {
+                    html += '<div class="row" id="suggestion-content">';
+                }
                 html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">';
                 html += '<div class="post">';
                 html += '<div class="view effect">';
@@ -73,9 +75,15 @@ function ajaxGetContent(e) {
                 html += '<span>IMDB: '+item['rating']+'</span>';
                 html += '</div>';
                 html += '</div>';
+                if (i===6) {
+                    html += '</div>';
+                }
+                i++;
             });
-            html += '</div>';
-            $('#main-content').html(html);
+            if (i!=7) {
+                html += '</div>';
+            }
+            $('.suggestion').html(html);
         }
     });
 }
@@ -86,19 +94,28 @@ $(document).ready(function(){
                 type: 'GET',
                 url: 'ajax/search/' + $(this).val(),
                 dataType: 'json',
-                beforeSend: function () {
-                    $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
-                },
                 success: function (result) {
-                    $("#suggesstion-box").show();
-                    var html = '';
-                    html += '<ul id="film-list">';
-                    $.each(result, function (key, item) {
-                        html += '<li onClick="selectFilm(\'' + item['name'] + '\');"><a href="/movie/'+item['slug']+'">' + item['name'] + '</a></li>';
-                    });
-                    html += '</ul>';
-                    $("#suggesstion-box").html(html);
-                    $("#search-box").css("background", "#FFF");
+                    if (result.length === 1 && result[0].length === 0) {
+                        $("#suggesstion-box").hide();
+                    } else {
+                        $("#suggesstion-box").show();
+                        var html = '';
+                        html += '<ul id="film-list">';
+                        $.each(result, function (key, item) {
+                            html += '<a href="/movie/' + item['slug'] + '"><li onClick="selectFilm(\'' + item['name'] + '\');">' + item['name'] + '</li></a>';
+                        });
+                        html += '</ul>';
+                        $("#suggesstion-box").html(html);
+                        $("#search-box").css("background", "#FFF");
+                        $("#suggesstion-box").css("background-color", "#FFF");
+                        $("#suggesstion-box").css("position", "absolute");
+                        $("#suggesstion-box").css("z-index", "999");
+                        $("#suggesstion-box").css("width", "290px");
+                        $("#suggesstion-box").css("font", "14px Arial, Helvetica, Sans-serif");
+                        $("#suggesstion-box").css("color", "#777");
+                        $("#suggesstion-box").css("padding", "5px");
+                        $("#suggesstion-box").css("border-radius", "5px");
+                    }
                 }
             });
         } else {
