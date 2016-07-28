@@ -118,6 +118,8 @@ class GoogleLinkController extends Controller
     public function index($code){
         $drive=new DriveLink('https://drive.google.com/file/d/'.$code.'/view');
         $result=$drive->Drive();
+        $result = rtrim($result, ',');
+        $result = '[' . $result . ']';
         return $result;
     }
 }

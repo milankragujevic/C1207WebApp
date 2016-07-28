@@ -295,6 +295,7 @@
                                         <span class="input-group-btn">
                                                             <button id="checkQuality" class="btn red" type="button">Check Quality</button>
                                                         </span>
+                                        <span class="label label-success" id="qualityInfo"></span>
                                         <div class="toast-bottom-center"></div>
 
                                     </div>
@@ -354,9 +355,17 @@
             toastr.info(data,'Checking code');
         }
         $("#checkQuality").click(function () {
-            showToastr("Loading")
+            showToastr("Loading");
             $.get("/googlelink/"+$("#googleCode").val(),function (data,status) {
-                showToastr(data);
+                console.log(data);
+                var json = JSON.parse(data);
+                var q = '';
+                $.each(json,function (index,data) {
+                    console.log(data.label);
+                    q+=data.label+" ";
+
+                });
+                $("#qualityInfo").text(q);
             });
         });
 

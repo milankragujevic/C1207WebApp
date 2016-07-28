@@ -48,8 +48,7 @@ class MovieController extends Controller
             $view = $movie->analytics()->count();
             //$linkGoogle = file_get_contents(url('/googlelink/'.$codeGoogle));
             $linkGoogle = file_get_contents(url('/googlelink/'.'0BzWDDSOVVu0AalU2bHFFdUJLdEU'));
-            $linkGoogle = rtrim($linkGoogle, ',');
-            $linkGoogle = '[' . $linkGoogle . ']';
+
             $linkGoogle = json_decode($linkGoogle, true);
         $temp=collect();
         foreach ($linkGoogle as $key=>$value){
