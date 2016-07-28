@@ -38,9 +38,9 @@ class AjaxController extends Controller
         return $movies;
     }
 
-    public function topRate()
+    public function topViewWeek()
     {
-        $movies=Movie::orderBy('rating')->take(12)->get();
+        $movies =Movie::all()->sortByDesc('view_week')->take(12);
         return $movies;
     }
 

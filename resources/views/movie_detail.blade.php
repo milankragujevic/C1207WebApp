@@ -27,7 +27,7 @@
                                         <li><p>Writer: <a href="#">{{ $movie->writer }}</a></p></li>
                                         <li><p>Actor:
                                                 @foreach($movie->actors as $item)
-                                                    <a href="{{ url('/actor/'.$item->name) }}">{{ $item->name }}</a>,
+                                                    <a href="{{ url('/star/'.$item->id) }}">{{ $item->name }}</a>,
                                                 @endforeach
                                             </p></li>
                                         <li><p>Runtime: {{ $movie->runtime }}</p></li>
@@ -46,27 +46,7 @@
                                             </p></li>
                                         <li class="star">
                                             <div class="please-vote-star">
-                                                @if($movie->rating!=0)
-                                                    @for($x=1;$x<=$movie->rating/2;$x++)
-                                                        <i class="fa fa-star"></i>
-                                                    @endfor
-                                                    @if($movie->rating/2 - ($x-1)>=0.5)
-                                                        <i class="fa fa-star"></i>
-                                                        {{-- */$x++;/* --}}
-                                                    @else
-                                                        {{-- */$x--;/* --}}
-                                                    @endif
-                                                    @while($x<5)
-                                                        <i class="fa fa-star-o"></i>
-                                                        {{-- */$x++;/* --}}
-                                                    @endwhile
-                                                @else
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                @endif
+                                                {!! $movie->renderStar() !!}
                                             </div>
                                         </li>
                                         <li>
@@ -177,27 +157,7 @@
                                                     <h3>{{ $item->name }}</h3>
                                                 </a>
                                                 <div class="please-vote-star">
-                                                    @if($item->rating!=0)
-                                                        @for($x=1;$x<=$item->rating/2;$x++)
-                                                            <i class="fa fa-star"></i>
-                                                        @endfor
-                                                        @if($item->rating/2 - ($x-1)>=0.5)
-                                                            <i class="fa fa-star"></i>
-                                                            {{-- */$x++;/* --}}
-                                                        @else
-                                                            {{-- */$x--;/* --}}
-                                                        @endif
-                                                        @while($x<5)
-                                                            <i class="fa fa-star-o"></i>
-                                                            {{-- */$x++;/* --}}
-                                                        @endwhile
-                                                    @else
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    @endif
+                                                    {!! $item->renderStar() !!}
                                                 </div>
                                                 <span>IMDB: {{ $item->rating }}</span>
                                             </div>

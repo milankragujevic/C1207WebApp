@@ -96,7 +96,7 @@ Route::get('ajax/movie/id/{id}','AjaxController@showMovie');
 Route::get('ajax/movie/feature','AjaxController@feature');
 Route::get('ajax/movie/toptoday','AjaxController@topViewToday');
 Route::get('ajax/movie/topmonth','AjaxController@topViewMonth');
-Route::get('ajax/movie/toprate','AjaxController@topRate');
+Route::get('ajax/movie/topweek','AjaxController@topViewWeek');
 Route::get('ajax/search/{name}','AjaxController@search');
 
 //Movie Request Route

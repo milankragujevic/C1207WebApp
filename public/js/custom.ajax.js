@@ -25,25 +25,25 @@ function ajaxGetContent(e) {
                     html += '<li class="active"><a onclick="ajaxGetContent(\'feature\')" id="feature">Featured</a></li>';
                     html += '<li><a onclick="ajaxGetContent(\'toptoday\')" id="toptoday">Top viewed today</a></li>';
                     html += '<li><a onclick="ajaxGetContent(\'topmonth\')" id="topmonth">Top Month</a></li>';
-                    html += '<li><a onclick="ajaxGetContent(\'toprate\')" id="toprate">Top Rating</a></li>';
+                    html += '<li><a onclick="ajaxGetContent(\'topweek\')" id="topweek">Top Rating</a></li>';
                     break;
                 case "toptoday":
                     html += '<li><a onclick="ajaxGetContent(\'feature\')" id="feature">Featured</a></li>';
                     html += '<li class="active"><a onclick="ajaxGetContent(\'toptoday\')" id="toptoday">Top viewed today</a></li>';
                     html += '<li><a onclick="ajaxGetContent(\'topmonth\')" id="topmonth">Top Month</a></li>';
-                    html += '<li><a onclick="ajaxGetContent(\'toprate\')" id="toprate">Top Rating</a></li>';
+                    html += '<li><a onclick="ajaxGetContent(\'topweek\')" id="topweek">Top Rating</a></li>';
                     break;
                 case "topmonth":
                     html += '<li><a onclick="ajaxGetContent(\'feature\')" id="feature">Featured</a></li>';
                     html += '<li><a onclick="ajaxGetContent(\'toptoday\')" id="toptoday">Top viewed today</a></li>';
                     html += '<li class="active"><a onclick="ajaxGetContent(\'topmonth\')" id="topmonth">Top Month</a></li>';
-                    html += '<li><a onclick="ajaxGetContent(\'toprate\')" id="toprate">Top Rating</a></li>';
+                    html += '<li><a onclick="ajaxGetContent(\'topweek\')" id="topweek">Top Rating</a></li>';
                     break;
-                case "toprate":
+                case "topweek":
                     html += '<li><a onclick="ajaxGetContent(\'feature\')" id="feature">Featured</a></li>';
                     html += '<li><a onclick="ajaxGetContent(\'toptoday\')" id="toptoday">Top viewed today</a></li>';
                     html += '<li><a onclick="ajaxGetContent(\'topmonth\')" id="topmonth">Top Month</a></li>';
-                    html += '<li class="active"><a onclick="ajaxGetContent(\'toprate\')" id="toprate">Top Rating</a></li>';
+                    html += '<li class="active"><a onclick="ajaxGetContent(\'topweek\')" id="topweek">Top Rating</a></li>';
                     break;
             }
             html += '</ul>';

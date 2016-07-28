@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actor;
 use App\Director;
 use App\Genre;
 use App\Group;
@@ -29,8 +30,9 @@ class FilterController extends Controller
         return view('movie_list',compact('title','listMovie'));
     }
     public function star($star){
-        $title=$star;
-        $listMovie=Genre::whereName($star)->first()->movies()->orderBy('updated_at','desc')->paginate(30);
+        $star=Actor::find($star);
+        $title=$star->name;
+        $listMovie=$star->movies()->orderBy('updated_at','desc')->paginate(30);
         return view('movie_list',compact('title','listMovie'));
     }
     public function country($country){

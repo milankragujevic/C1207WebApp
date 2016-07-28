@@ -10,7 +10,7 @@ class Movie extends Model
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    protected $appends = ['view','view_today','view_month'];
+    protected $appends = ['view', 'view_today', 'view_month', 'view_week'];
     protected $fillable = ['name', 'slug', 'title', 'description', 'runtime', 'poster',
         'imdb_code', 'imdb_vote', 'released', 'writer', 'country', 'language', 'rated',
         'trailer', 'award', 'type', 'quality', 'rating', 'created_by', 'updated_by', 'total_seasons'];
@@ -72,17 +72,65 @@ class Movie extends Model
 
     public function getViewAttribute()
     {
-        $view=$this->analytics()->count();
+        $view = $this->analytics()->count();
         return $view;
     }
 
-    public function getViewTodayAttribute(){
-        $view=$this->analytics()->whereBetween('created_at',array(Carbon::today(),Carbon::tomorrow()))->count();
+    public function getViewTodayAttribute()
+    {
+        $view = $this->analytics()->whereBetween('created_at', array(Carbon::today(), Carbon::tomorrow()))->count();
         return $view;
     }
 
-    public function getViewMonthAttribute(){
-        $view=$this->analytics()->whereBetween('created_at',[Carbon::tomorrow()->subMonth(),Carbon::tomorrow()])->count();
+    public function getViewMonthAttribute()
+    {
+        $view = $this->analytics()->whereBetween('created_at', [Carbon::tomorrow()->subMonth(), Carbon::tomorrow()])->count();
         return $view;
     }
-}
+
+    public function getViewWeekAttribute()
+    {
+        $view = $this->analytics()->whereBetween('created_at', [Carbon::tomorrow()->subWeek(), Carbon::tomorrow()])->count();
+        return $view;
+    }
+
+    public function renderStar()
+    {
+        if($this->rating==0){
+            return '<i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>';
+        }else if ($this->rating <= 2) {
+            return '<i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>';
+        } else if ($this->rating <= 4) {
+            return '<i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>';
+        } else if ($this->rating <= 6) {
+            return '<i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>';
+        } else if($this->rating<=8) {
+            return '<i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>';
+        }else{
+            return '<i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>';
+        }
+    }}

@@ -101,7 +101,7 @@ class MovieController extends Controller
                 $request->session()->put('totalSeasons', $movie['totalSeasons']);
             }
             $tags='watch free movies online, free movies, free movie,
-watch free series movies online,'.$movie['Actors'];
+watch free series movies online,'.$movie['Actors'].','.$movie['Genre'];
             //dd($movie);
             $groups = Group::all();
             return view('admin.newmovie', compact('groups', 'movie','tags'));

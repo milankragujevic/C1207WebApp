@@ -29,27 +29,7 @@
                                             <h3>{{ $item->name }}</h3>
                                         </a>
                                         <div class="please-vote-star">
-                                            @if($item->rating!=0)
-                                                @for($x=1;$x<=$item->rating/2;$x++)
-                                                    <i class="fa fa-star"></i>
-                                                @endfor
-                                                @if($item->rating/2 - ($x-1)>=0.5)
-                                                    <i class="fa fa-star"></i>
-                                                    {{-- */$x++;/* --}}
-                                                @else
-                                                    {{-- */$x--;/* --}}
-                                                @endif
-                                                @while($x<5)
-                                                    <i class="fa fa-star-o"></i>
-                                                    {{-- */$x++;/* --}}
-                                                @endwhile
-                                            @else
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            @endif
+                                            {!! $item->renderStar() !!}
                                         </div>
                                         <span>IMDB: {{ $item->rating }}</span>
                                     </div>
