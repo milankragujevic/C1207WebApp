@@ -78,7 +78,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="language">
                             <ul>
-                                <li><a target="_blank" class="img-fb" href="https://www.facebook.com/Smovies.tv"><img alt="Follow us on Facebook" src="{{ asset('/images/facebook.png') }}" ></a></li>
+                                <li><a target="_blank" class="img-fb" href="https://www.facebook.com/Smovies.tv"><img alt="Follow us on Facebook" title="Follow us on Facebook" src="{{ asset('/images/facebook-fanpage-smovies.tv.png') }}" ></a></li>
                                 <li>
                                     <p>Language</p>
                                 </li>
