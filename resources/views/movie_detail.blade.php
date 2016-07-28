@@ -16,18 +16,18 @@
                                         <li><h2>{{ $movie->name }}</h2></li>
                                         <li><p>Genre:
                                                 @foreach($movie->genresmodel as $genre)
-                                                    <a href="{{ url('/genre/'.$genre->name) }}">{{ $genre->name }}</a>,
+                                                    <a href="{{ url('/genre/'.str_slug($genre->name)) }}">{{ $genre->name }}</a>,
                                                 @endforeach
                                             </p></li>
                                         <li><p>Director:
                                                 @foreach($movie->directors as $item)
-                                                    <a href="{{ url('/director/'.$item->name) }}">{{ $item->name }}</a>,
+                                                    <a href="{{ url('/director/'.str_slug($item->name)) }}">{{ $item->name }}</a>,
                                                 @endforeach
                                             </p></li>
                                         <li><p>Writer: <a href="#">{{ $movie->writer }}</a></p></li>
                                         <li><p>Actor:
                                                 @foreach($movie->actors as $item)
-                                                    <a href="{{ url('/star/'.$item->id) }}">{{ $item->name }}</a>,
+                                                    <a href="{{ url('/star/'.str_slug($item->name)) }}">{{ $item->name }}</a>,
                                                 @endforeach
                                             </p></li>
                                         <li><p>Runtime: {{ $movie->runtime }}</p></li>

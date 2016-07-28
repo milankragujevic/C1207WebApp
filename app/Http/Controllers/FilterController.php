@@ -15,24 +15,39 @@ use App\Http\Requests;
 class FilterController extends Controller
 {
     public function genre($genre){
-        $title=$genre;
-        $genre=Genre::whereName($genre)->first();
-        if (isset($genre)) {
-            $listMovie = $genre->movies()->orderBy('updated_at', 'desc')->paginate(30);
-        }else{
-            $listMovie=Movie::whereName('Haha')->paginate(30);
+        $genres=Genre::all();
+        foreach ($genres as $item){
+            if (str_slug($item->name)==$genre){
+                $found=$item;
+                break;
+            }
         }
+        $listMovie=$found->movies()->paginate(30);
+        $title=$found->name;
         return view('movie_list',compact('title','listMovie'));
     }
     public function director($director){
-        $title=$director;
-        $listMovie=Director::whereName($director)->first()->movies()->orderBy('updated_at','desc')->paginate(30);
+        $directors=Director::all();
+        foreach ($directors as $item){
+            if (str_slug($item->name)==$director){
+                $found=$item;
+                break;
+            }
+        }
+        $listMovie=$found->movies()->paginate(30);
+        $title=$found->name;
         return view('movie_list',compact('title','listMovie'));
     }
     public function star($star){
-        $star=Actor::find($star);
-        $title=$star->name;
-        $listMovie=$star->movies()->orderBy('updated_at','desc')->paginate(30);
+        $stars=Actor::all();
+        foreach ($stars as $item){
+            if (str_slug($item->name)==$star){
+                $found=$item;
+                break;
+            }
+        }
+        $listMovie=$found->movies()->paginate(30);
+        $title=$found->name;
         return view('movie_list',compact('title','listMovie'));
     }
     public function country($country){
