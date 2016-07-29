@@ -117,7 +117,7 @@ class Movie extends Model
         } else if ($this->rating <= 6) {
             return '<i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star"></i>
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>';
         } else if($this->rating<=8) {
