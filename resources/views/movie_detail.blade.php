@@ -13,7 +13,7 @@
                                 </div>
                                 <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
                                     <ul class="ul-detail-movie">
-                                        <li><h2>{{ $movie->name }}</h2></li>
+                                        <li><h2>{{ $movie->name }} {{ $movie->type=='series'?'Season '.$movie->season:'' }}</h2></li>
                                         <li><p>Genre:
                                                 @foreach($movie->genresmodel as $genre)
                                                     <a href="{{ url('/genre/'.str_slug($genre->name)) }}">{{ $genre->name }}</a>,
@@ -68,23 +68,10 @@
                                         {{--@endif--}}
                                     </ul>
                                     @if(isset($allEpisode))
-                                        <ul class="nav nav-tabs">
-                                            @foreach($allEpisode as $season => $list)
-                                            <li role="presentation">
-                                                <a href="#s{{ $season }}" role="tab" data-toggle="tab">Season {{ $season }}</a>
-                                            </li>
-                                                @endforeach
-                                        </ul>
-                                        <div class="tab-content">
-                                            @foreach($allEpisode as $season => $list)
-                                            <div id="s{{ $season }}" class="tab-pane fade" role="tabpanel">
-                                                @foreach($list as $item)
+                                            @foreach($allEpisode as $item)
                                                 <a class="btn-eps" href="{{ url('/play/'.$movie->slug.'/'.$item->slug) }}">Eps {{ $item->name }}</a>
-                                                    @endforeach
-                                            </div>
                                                 @endforeach
-                                        </div>
-                                    @endif
+                                        @endif
                                 </div>
                             </div>
                             <div class="news-movies">

@@ -14,16 +14,18 @@ use Illuminate\Support\Facades\Auth;
 
 class EpisodeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin:staff');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('admin:admin');
-    }
-
     public function index($imdb)
     {
         $movie=Movie::whereImdbCode($imdb)->orWhere('id',$imdb)->first();
@@ -55,8 +57,9 @@ class EpisodeController extends Controller
     public function store(Request $request)
     {
         $quality = $request->input('quality');
+        $stringQuality = null;
         if (is_array($quality)) {
-            $stringQuality = null;
+
             foreach ($quality as $item) {
 
                 $stringQuality .= $item . ',';
@@ -67,7 +70,7 @@ class EpisodeController extends Controller
         }
 
         $movie=Movie::find($request->input('movieid'));
-        DB::transaction(function () use ($request,$movie){
+        DB::transaction(function () use ($request,$movie,$stringQuality){
         $episode=Episode::firstOrCreate([
             'imdb_code'=>$request->input('imdb_code'),
             'name'=>$request->input('name'),

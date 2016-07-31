@@ -43,7 +43,7 @@
                                 <i class="fa fa-shopping-cart"></i>Order Listing
                             </div>
                             <div class="actions">
-                                <a href="{{ url('admin/movie/newmovie') }}" class="btn btn-circle btn-info">
+                                <a href="{{ url('admin/movie/newmovie?ownerid='.$movie->id) }}" class="btn btn-circle btn-info">
                                     <i class="fa fa-plus"></i>
                                     <span class="hidden-xs"> New Episode </span>
                                 </a>
@@ -101,11 +101,11 @@
                                                        class="btn btn-sm btn-default btn-circle btn-editable"><i
                                                             class="fa fa-pencil"></i> Edit&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                                                     @if(!$item->trashed())
-                                                        <a href="{{ url('admin/disable/'.$item->id) }}"
+                                                        <a href="#"
                                                            class="btn btn-sm btn-default btn-circle btn-warning"><i
                                                                 class="fa fa-pencil"></i> Disable</a>
                                                     @else
-                                                        <a href="{{ url('admin/enable/'.$item->id) }}"
+                                                        <a href="#"
                                                            class="btn btn-sm btn-default btn-circle btn-default"><i
                                                                 class="fa fa-pencil"></i> Enable</a>
                                                     @endif

@@ -26,7 +26,7 @@
                                         </div>
                                         <div class="clear"></div>
                                         <a href="{{ url('/movie/'.$item->slug) }}">
-                                            <h3>{{ $item->name }}</h3>
+                                            <h3>{{ $item->name }} {{ $item->type=='series'?'Season '.$item->season:'' }}</h3>
                                         </a>
                                         <div class="please-vote-star">
                                             {!! $item->renderStar() !!}

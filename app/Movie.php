@@ -13,7 +13,7 @@ class Movie extends Model
     protected $appends = ['view', 'view_today', 'view_month', 'view_week'];
     protected $fillable = ['name', 'slug', 'title', 'description', 'runtime', 'poster',
         'imdb_code', 'imdb_vote', 'released', 'writer', 'country', 'language', 'rated',
-        'trailer', 'award', 'type', 'quality', 'rating', 'created_by', 'updated_by', 'total_seasons'];
+        'trailer', 'award', 'type', 'quality', 'rating', 'created_by', 'updated_by', 'total_seasons','season'];
 
     public function tags()
     {

@@ -25,11 +25,7 @@ class MovieController extends Controller
         $relatedPost = $relatedPost->take(12)->get();
         //dd($relatedPost);
         if ($movie->type == 'series') {
-            $allEpisode = collect();
-            for ($x = 1; $x <= $movie->total_seasons; $x++) {
-                $listMovie = $movie->episodes()->whereSeason($x)->get();
-                $allEpisode->put($x, $listMovie);
-            }
+            $allEpisode = $movie->episodes()->get();
             return view('movie_detail', compact('movie', 'allEpisode'))->with('relatedMovie', $relatedPost);
         }
         return view('movie_detail')->with('movie', $movie)->with('relatedMovie', $relatedPost);
@@ -46,10 +42,10 @@ class MovieController extends Controller
             $view = Analytic::create(['view_count' => 1]);
             $movie->analytics()->save($view);
             $view = $movie->analytics()->count();
-            //$linkGoogle = file_get_contents(url('/googlelink/'.$codeGoogle));
-            $linkGoogle = file_get_contents(url('/googlelink/'.'0BzWDDSOVVu0AalU2bHFFdUJLdEU'));
-
-            $linkGoogle = json_decode($linkGoogle, true);
+            $linkGoogle = file_get_contents(url('/googlelink/'.$codeGoogle));
+            //$linkGoogle = file_get_contents(url('/googlelink/'.'0BzWDDSOVVu0AeDNVMDU2VUdoeG8'));
+        //dd($linkGoogle);
+            $linkGoogle = json_decode($linkGoogle,true);
         $temp=collect();
         foreach ($linkGoogle as $key=>$value){
             $temp->put($value['label'],$value['file']);
@@ -57,7 +53,6 @@ class MovieController extends Controller
         $linkGoogle=$temp;
             $codeOpenload = $movie->movielinks()->whereProvider('Openload')->first()->link;
             $linkOpenload = 'https://openload.co/embed/' . $codeOpenload . '/';
-
         } catch (\Exception $ex) {
             $view='';
             $linkGoogle = collect();

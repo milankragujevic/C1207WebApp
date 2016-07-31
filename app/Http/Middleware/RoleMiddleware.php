@@ -18,7 +18,10 @@ class RoleMiddleware
     {
         $user=$request->user();
         if (isset($user)){
-            if ( $request->user()->role!=='admin'){
+            if ($request->user()->role=='admin'){
+                return $next($request);
+            }
+            if ( $request->user()->role!==$role){
             abort(401);
             }
         }else{

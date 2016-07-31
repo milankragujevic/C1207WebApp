@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Input;
 
 class BannerController extends Controller
 {
+
+    /**
+     * BannerController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin:staff');
+    }
+
     public function index($id=null){
         if (isset($id)){
             $banner=Banner::find($id);

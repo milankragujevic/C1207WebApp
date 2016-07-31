@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMovieimagesTable extends Migration
+class AddSeasonToMoviesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,8 @@ class CreateMovieimagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('movieimages',function (Blueprint $table){
-           $table->increments('id');
-            $table->string('link');
-            $table->string('type');
-            $table->morphs('imageable');
+        Schema::table('movies',function(Blueprint $table){
+            $table->integer('season');
         });
     }
 

@@ -26,6 +26,7 @@ class MovieController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
         $this->middleware('admin:admin');
     }
 
@@ -51,6 +52,8 @@ class MovieController extends Controller
 
     public function newMovie()
     {
+        $id=request('ownerid');
+        request()->session()->put('movieid',$id);
         return view('admin.imdbrequest');
     }
 
@@ -79,20 +82,29 @@ class MovieController extends Controller
     {
         $imdbID = trim($request->get('imdbId'));
         $movie1 = Movie::whereImdbCode($imdbID)->first();
-        if (!isset($movie1)) {
-            $json = file_get_contents('http://www.omdbapi.com/?i=' . $imdbID . '&plot=full&r=json');
-            $movie = json_decode($json, true);
+        $json = file_get_contents('http://www.omdbapi.com/?i=' . $imdbID . '&plot=full&r=json');
+        $movie = json_decode($json, true);
+        if ($movie['Type']=='series' || !isset($movie1)) {
             if ($movie['Response'] !== 'True') {
                 $error = 'Wrong IMDB id !';
                 return view('admin.imdbrequest')->with('errorMovie', $error);
             }
             if ($movie['Type'] == 'episode') {
-                if (!empty(Movie::whereImdbCode($movie['seriesID'])->first())) {
-                    $movie1 = Movie::whereImdbCode($movie['seriesID'])->first();
+//                if (!empty(Movie::whereImdbCode($movie['seriesID'])->first())) {
+//                    $movie1 = Movie::whereImdbCode($movie['seriesID'])->first();
+//                    $img = \Intervention\Image\Facades\Image::make($movie['Poster'])->save(public_path('images/episode/poster/') . str_slug($movie1->name . ' ' . $movie['Title']) . '.jpg');
+//                    return view('admin.episode.episode_add')->with('movie1', $movie1)->with('movie', $movie);
+//                } else {
+//                    return back()->with('errorMovie', 'Bạn cần tạo movie trước khi tạo episode');
+//                }
+
+                $movieid=$request->session()->pull('movieid');
+                if (isset($movieid)){
+                    $movie1=Movie::find($movieid);
                     $img = \Intervention\Image\Facades\Image::make($movie['Poster'])->save(public_path('images/episode/poster/') . str_slug($movie1->name . ' ' . $movie['Title']) . '.jpg');
                     return view('admin.episode.episode_add')->with('movie1', $movie1)->with('movie', $movie);
-                } else {
-                    return back()->with('errorMovie', 'Bạn cần tạo movie trước khi tạo episode');
+                }else{
+                    return back()->with('errorMovie', 'This is episode not movie');
                 }
             }
             $img = \Intervention\Image\Facades\Image::make($movie['Poster'])->save(public_path('images/poster/') . str_slug($movie['Title']) . '.jpg');
@@ -105,7 +117,7 @@ watch free series movies online,' . $movie['Actors'] . ',' . $movie['Genre'];
             //dd($movie);
             $groups = Group::all();
             return view('admin.newmovie', compact('groups', 'movie', 'tags'));
-        } else {
+        }else{
             $error = 'Movie already added !';
             return view('admin.imdbrequest')->with('errorMovie', $error);
         }
@@ -133,11 +145,10 @@ watch free series movies online,' . $movie['Actors'] . ',' . $movie['Genre'];
                 $stringQuality = rtrim($stringQuality, ',');
             }
         }
-        DB::transaction(function () use ($request) {
+        DB::beginTransaction();
 
-            $movie = Movie::firstOrCreate([
+            $movie = Movie::create([
                 'name' => $request->input('movieName'),
-                'slug' => $request->input('slug'),
                 'title' => $request->input('movieName'),
                 'description' => $request->input('movieDes'),
                 'runtime' => $request->input('runtime'),
@@ -156,7 +167,7 @@ watch free series movies online,' . $movie['Actors'] . ',' . $movie['Genre'];
                 'quality' => isset($stringQuality) ? $stringQuality : '',
                 'created_by' => Auth::user()->name,
                 'updated_by' => Auth::user()->name,
-                'total_seasons' => $request->session()->get('totalSeasons', '')
+                'total_seasons' => $request->session()->pull('totalSeasons', '')
 
             ]);
 
@@ -205,18 +216,28 @@ watch free series movies online,' . $movie['Actors'] . ',' . $movie['Genre'];
                 new Movielink(['provider' => 'Openload', 'link' => $request->input('openload')])
             ]);
 
-//        $img=new Movieimage([
-//            'link'=>str_slug($movie->name).'jpg',
-//            'type'=>'poster'
-//        ]);
-//            $movie->movieimages()->save(
-//                new Movieimage([
-//                    'link' => str_slug($movie->name).rand(1000,9000) . '.jpg',
-//                    'type' => 'poster'
-//                ])
-//            );
+        try {
+            if ($movie->type == 'series') {
+                $season = $request->input('season');
+                $slug = $request->input('slug');
+                if (isset($season)) {
+                    $movie->season = $season;
+                    $movie->slug = $slug . '-season-' . $season;
+                    $movie->save();
+                } else {
+                    DB::rollback();
+                    return back();
+                }
+            }else{
+                $movie->slug=$request->input('slug');
+                $movie->save();
+            }
+        }catch (\Exception $ex){
+            DB::rollback();
+            return back();
+        }
 
-        });
+        DB::commit();
         return redirect('admin/movie');
     }
 
@@ -308,6 +329,13 @@ watch free series movies online,' . $movie['Actors'] . ',' . $movie['Genre'];
             $openlink->link = $request->input('openload_link');
             $openlink->save();
 
+            $file=$request->file('poster');
+            if (Input::hasFile('poster')){
+                $filename=$movie->name.$movie->id;
+                $extension='.'.$file->getClientOriginalExtension();
+                $file->move(public_path('images/poster/'),$filename.$extension);
+                $movie->poster=$filename.$extension;
+            }
             $movie->name=$request->input('name');
             $movie->slug=$request->input('slug');
             $movie->trailer=$request->input('trailer');
@@ -317,6 +345,7 @@ watch free series movies online,' . $movie['Actors'] . ',' . $movie['Genre'];
             $movie->rated=$request->input('rated');
             $movie->language=$request->input('language');
             $movie->country=$request->input('country');
+
             $movie->save();
 
 //            $poster = $request->file('poster');

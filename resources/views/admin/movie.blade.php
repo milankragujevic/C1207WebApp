@@ -122,8 +122,8 @@
                                         <td><label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input
                                                         name="id[]" type="checkbox" class="checkboxes"
                                                         value="11"><span></span></label></td>
-                                        <td class="sorting_1"><img height="230px" width="155px" src="{{ asset('images/poster/'.str_slug($item->name).'.jpg') }}"></td>
-                                        <td>{{ $item->name }}</td>
+                                        <td class="sorting_1"><img height="230px" width="155px" src="{{ asset('images/poster/'.$item->poster) }}"></td>
+                                        <td>{{ $item->name }} {!! $item->type=='series'?'<span class="label label-info">Season: '.$item->season.'</span>':'' !!}</td>
                                         <td>
                                             @if(isset($item->groups))
                                                 @foreach($item->groups as $group)

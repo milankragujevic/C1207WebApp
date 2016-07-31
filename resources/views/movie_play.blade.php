@@ -56,22 +56,15 @@
     <script>
         var playerInstance = jwplayer("movie");
         playerInstance.setup({
-//            skin:{
-//                name:'five'
-//            },
-            source: [{
-                file: '{!!$linkGoogle['720p']!!}',
-                label: "720p HD",
-                type: 'mp4',
-                "default": "true"
+            skin:{
+                name:'five'
+            },
+            sources: [{
+                file: "{!! $linkGoogle['480p'] !!}",
+                type :"mp4"
             },{
-                file: '{!!$linkGoogle['480p']!!}',
-                label: "480p HD",
-                type: 'mp4'
-            },{
-                file: '{!!$linkGoogle['360p']!!}',
-                label: "360p HD",
-                type: 'mp4'
+                file: "{!! $linkGoogle['720p'] !!}",
+                type :"mp4"
             }],
             aspectratio: '16:9',
             width: '100%'

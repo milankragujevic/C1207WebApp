@@ -39,7 +39,7 @@
                 </div>
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    <form method="post" action="{{ url('admin/movie/'.$movie->id) }}" class="horizontal-form">
+                    <form method="post" action="{{ url('admin/movie/'.$movie->id) }}" class="horizontal-form" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input name="_method" value="PUT" type="hidden">
                         <div class="form-body">
@@ -156,9 +156,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--/span-->
-
-                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group form-md-checkboxes">
+                                        <label class="control-label">Poster</label>
+                                        <input type="file" name="poster" class="form-control">
+                                    </div>
+                                </div>
                             </div>
                             <h3 class="form-section">Link</h3>
                             <!--/row-->

@@ -11,6 +11,16 @@ use App\Http\Controllers\Controller;
 
 class MovieRequestController extends Controller
 {
+
+
+    /**
+     * MovieRequestController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function show($id=null){
         $count=Movierequest::count();
         if (isset($id)){

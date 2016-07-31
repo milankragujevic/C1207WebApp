@@ -11,6 +11,15 @@ use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
+
+    /**
+     * SearchController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function search(Request $request){
 
         $perPage=$request->input('$perpage');

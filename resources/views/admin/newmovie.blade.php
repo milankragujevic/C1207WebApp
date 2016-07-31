@@ -269,21 +269,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--/span-->
-                            {{--<div class="col-md-6">--}}
-                            {{--<div class="form-group">--}}
-                            {{--<label class="control-label">Option</label>--}}
-                            {{--<div class="md-checkbox">--}}
-                            {{--<input type="checkbox" name="upcoming" id="checkbox2_1" class="md-check">--}}
-                            {{--<label for="checkbox2_1">--}}
-                            {{--<span></span>--}}
-                            {{--<span class="check"></span>--}}
-                            {{--<span class="box"></span> Upcomming--}}
-                            {{--</label>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            <!--/span-->
+                                @if($movie['Type']=='series')
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Season</label>
+                                        <input type="number" name="season" class="form-control"
+                                               placeholder="Enter Season Number" required>
+                                    </div>
+                                </div>
+                                    @endif
                             </div>
                             <h3 class="form-section">Movie Link</h3>
                             <div class="row">
@@ -359,15 +353,7 @@
             $.get("/googlelink/"+$("#googleCode").val(),function (data,status) {
                 var json = JSON.parse(data);
                 var q = '';
-                var array=[];
-                for(a in json){
-                    array.push(a,json[a]);
-                }
-                array.sort(function (a,b) {
-                    return a[0]-b[0];
-                });
-                console.log(array);
-                $.each(array,function (index,data) {
+                $.each(json,function (index,data) {
                     q+=data.label+" "
                 });
                 $("#qualityInfo").text(q);
