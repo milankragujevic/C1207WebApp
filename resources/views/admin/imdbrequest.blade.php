@@ -49,6 +49,7 @@
         <!-- END CONTENT BODY -->
     </div>
 
-@section('pageScript')
+
 @endsection
+@section('pageScript')
 @endsection

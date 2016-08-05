@@ -29,17 +29,17 @@ class SearchController extends Controller
         $name=$request->input('movie_name');
         $group=$request->input('group');
         if (!empty($imdbId)){
-            $listMovie=Movie::withTrashed()->whereImdbCode($imdbId)->get();
+            $listMovie=Movie::withTrashed()->whereImdbCode($imdbId)->paginate(10);
             return view('admin.movie',compact('listMovie','groups'));
         }
         if (!empty($name)){
-            $listMovie=Movie::withTrashed()->where('name','like','%'.$name.'%')->orderBy('updated_at','desc')->get();
+            $listMovie=Movie::withTrashed()->where('name','like','%'.$name.'%')->orderBy('updated_at','desc')->paginate(10);
             return view('admin.movie',compact('listMovie','groups'));
         }
         if (!empty($status)||$status===0){
             if ($status==1){
                 if (!empty($group)) {
-                    $listMovie = Group::find($group)->movies()->get();
+                    $listMovie = Group::find($group)->movies()->paginate(10);
                     return view('admin.movie', compact('listMovie', 'groups'));
                 }
                 $listMovie=Movie::all();
@@ -47,7 +47,7 @@ class SearchController extends Controller
             }
             if ($status===0){
                 if (!empty($group)) {
-                    $listMovie = Group::find($group)->movies()->onlyTrashed()->get();
+                    $listMovie = Group::find($group)->movies()->onlyTrashed()->paginate(10);
                     return view('admin.movie', compact('listMovie', 'groups'));
                 }
                 $listMovie=Movie::onlyTrashed()->get();
@@ -55,12 +55,12 @@ class SearchController extends Controller
             }
         }else{
             if (!empty($group)) {
-                $listMovie = Group::find($group)->movies()->withTrashed()->get();
+                $listMovie = Group::find($group)->movies()->withTrashed()->paginate(10);
                 return view('admin.movie', compact('listMovie', 'groups'));
             }
         }
 
-        $listMovie=Movie::withTrashed()->orderBy('updated_at','desc')->get();
+        $listMovie=Movie::withTrashed()->orderBy('updated_at','desc')->paginate(10);
         return view('admin.movie',compact('listMovie','groups'));
     }
 }

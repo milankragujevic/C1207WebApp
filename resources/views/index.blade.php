@@ -116,7 +116,7 @@
                         </div>
                         @endforeach
                         <center>
-                            <p><a href="{{ url('/latestmovie') }}" title="View all latest movie" class="view-more"> View more latest movie >></a></p>
+                            <p><a href="{{ url('/latestmovie') }}" title="View all latest movie" class="view-more"> View more latest movie </a></p>
                         </center>
                     </div>
                     <div class="serie">
@@ -140,7 +140,7 @@
                                         </div>
                                         <div class="clear"></div>
                                         <a href="{{ url('/movie/'.$item->slug) }}">
-                                            <h3>{{ $item->name }}</h3>
+                                            <h3>{{ $item->name }} {{ $item->type=='series'? 'Season '.$item->season:''}}</h3>
                                         </a>
                                         <div class="please-vote-star">
                                             {!! $item->renderStar() !!}
@@ -152,7 +152,7 @@
                         </div>
                         @endforeach
                         <center>
-                            <p><a href="{{ url('/tvseries') }}" title="View all series movie" class="view-more"> View more series movie >></a></p>
+                            <p><a href="{{ url('/tvseries') }}" title="View all series movie" class="view-more"> View more series movie </a></p>
                         </center>
                     </div>
 

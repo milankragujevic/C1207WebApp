@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="383cdc53-7d96-438f-a4a3-d5b91ad3b48d" name="smovies.tv" url="http://smovies.tv">
+        <fileTransfer host="192.158.236.57" port="22" rootFolder="/root" accessType="SFTP" password="df93df92df9ddf9fdf98dfdbdfd9dfd2df8bdfeadf89" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -558,29 +558,27 @@
                                 <span class="title">Star List</span>
                             </a>
                         </li>
-                        <li class="nav-item  ">
-                            <a href="ui_buttons.html" class="nav-link ">
-                                <span class="title">Update Slug</span>
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
 
                 <li class="heading">
                     <h3 class="uppercase">Staff manager</h3>
                 </li>
+                @if(Auth::user()->role=='admin')
                 <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link nav-toggle">
+                    <a href="{{ url('/admin/user/create') }}" class="nav-link nav-toggle">
                         <i class="icon-diamond"></i>
                         <span class="title">Add Staff</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link nav-toggle">
+                    <a href="{{ url('/admin/user') }}" class="nav-link nav-toggle">
                         <i class="icon-diamond"></i>
                         <span class="title">Staff List</span>
                     </a>
                 </li>
+                    @endif
             </ul>
             <!-- END SIDEBAR MENU -->
             <!-- END SIDEBAR MENU -->

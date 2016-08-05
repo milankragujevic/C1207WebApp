@@ -30,7 +30,7 @@ class EpisodeController extends Controller
     {
         $movie=Movie::whereImdbCode($imdb)->orWhere('id',$imdb)->first();
         if ($movie->type=='series'){
-            $episodes=$movie->episodes()->orderBy('released')->get();
+            $episodes=$movie->episodes()->withTrashed()->orderBy('released')->get();
             return view('admin.episode.episode_list')->with('listMovies',$episodes)->with('movie',$movie);
         }else{
             return back();
@@ -139,7 +139,11 @@ class EpisodeController extends Controller
             $episode=Episode::find($id);
             $gglink=$episode->movielinks()->whereProvider('Google Drive')->first();
             $gglink->link=$request->input('google_drive');
-            $gglink->save();
+			      $gglink->save();
+			      $openload=$episode->movielinks()->whereProvider('Openload')->first();
+			      $openload->link=$request->input('openload');
+			      $openload->save();
+
         });
         return back();
     }
@@ -152,6 +156,26 @@ class EpisodeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $episode=Episode::find($id);
+        if (!isEmpty($episode)) {
+        $episode->history()->forceDelete();
+        }
+        return back();
+    }
+
+    public function enable($id){
+      $episode=Episode::withTrashed()->find($id);
+      if ($episode->trashed()) {
+        $episode->restore();
+      }
+      return back();
+    }
+
+    public function disable($id){
+      $episode=Episode::find($id);
+      if (!$episode->trashed()) {
+        $episode->delete();
+      }
+      return back();
     }
 }

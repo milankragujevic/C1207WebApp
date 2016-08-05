@@ -101,17 +101,20 @@
                                                        class="btn btn-sm btn-default btn-circle btn-editable"><i
                                                             class="fa fa-pencil"></i> Edit&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                                                     @if(!$item->trashed())
-                                                        <a href="#"
+                                                        <a href="{{ url('/admin/episode/disable/'.$item->id) }}"
                                                            class="btn btn-sm btn-default btn-circle btn-warning"><i
                                                                 class="fa fa-pencil"></i> Disable</a>
                                                     @else
-                                                        <a href="#"
+                                                        <a href="{{ url('/admin/episode/enable/'.$item->id) }}"
                                                            class="btn btn-sm btn-default btn-circle btn-default"><i
                                                                 class="fa fa-pencil"></i> Enable</a>
                                                     @endif
                                                     <a href="{{ url('admin/episode/'.$item->id) }}"
                                                        class="btn btn-sm btn-default btn-circle btn-editable"><i
                                                             class="fa fa-desktop"></i> Detail   </a>
+                                                    <a href="{{ url('admin/episode/'.$item->id) }}" id="deleteButton"
+                                                            class="btn btn-sm btn-default btn-circle btn-editable"><i
+                                                            class="fa fa-desktop"></i> Delete   </a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -144,4 +147,13 @@
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="../assets/pages/scripts/ecommerce-products.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
+    <script>
+    $('#deleteButton').click(function(){
+      $.ajax({
+        url: "{{ url('/admin/episode/')}}",
+      }).done(function(){
+
+      });
+    });
+    </script>
 @endsection

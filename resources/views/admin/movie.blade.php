@@ -171,7 +171,11 @@
                                         @endif
                                     </tbody>
                                 </table>
+								
                             </div>
+							<div style="margin: auto;width: 50%;">
+								{{$listMovie->render()}}	
+							</div>
                         </div>
                     </div>
                     <!-- End: life time stats -->

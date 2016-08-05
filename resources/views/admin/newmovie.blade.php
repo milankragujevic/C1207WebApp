@@ -320,6 +320,7 @@
         </div>
         <!-- END CONTENT BODY -->
     </div>
+@endsection
 @section('pageScript')
     <script src="{{ asset('assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"
             type="text/javascript"></script>
@@ -362,4 +363,4 @@
 
     </script>
 @endsection
-@endsection
+

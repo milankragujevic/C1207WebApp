@@ -13,9 +13,9 @@
 //Debug
 Route::get('debug','DebugController@index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 //Route::get('/images/{image}',function ($image){
 //    //dd($image);
@@ -26,6 +26,8 @@ Route::get('/', function () {
 Route::get('/movie/{slug}','MovieController@show');
 Route::get('play/{slug}/{epislug?}','MovieController@play');
 Route::get('/','IndexController@index');
+Route::get('/sitemap','IndexController@sitemap');
+Route::get('/feed','IndexController@feed');
 Route::get('latestmovie','IndexController@latestmovie');
 Route::get('latestseries','IndexController@latestseries');
 Route::get('/request-movie','IndexController@createRequest');
@@ -80,6 +82,8 @@ Route::get('admin/','Admin\DashboardController@dashboard1');
 Route::get('admin/dashboard2','Admin\DashboardController@dashboard2');
 Route::get('admin/dashboard3','Admin\DashboardController@dashboard3');
 Route::resource('admin/episode','Admin\EpisodeController');
+Route::get('admin/episode/enable/{id}','Admin\EpisodeController@enable');
+Route::get('admin/episode/disable/{id}','Admin\EpisodeController@disable');
 Route::get('admin/episode/movie/{imdb}','Admin\EpisodeController@index');
 Route::get('admin/tags/{id?}','Admin\MovieController@tagsManager');
 Route::get('admin/banner/{id?}','Admin\BannerController@index');
@@ -92,6 +96,7 @@ Route::get('admin/search','Admin\SearchController@search');
 //Route::resource('admin/group','Admin\GroupController');
 //User Manager
 Route::resource('admin/user','Admin\UserController');
+Route::get('admin/user/enable/{id}','Admin\UserController@enable');
 //Ajax Route
 Route::get('ajax/movie/id/{id}','AjaxController@showMovie');
 Route::get('ajax/movie/feature','AjaxController@feature');
@@ -105,4 +110,3 @@ Route::get('admin/request/{id?}','Admin\MovieRequestController@show');
 Route::get('/googlelink/{code}','GoogleLinkController@index');
 //Analytics
 Route::get('analytics','AnalyticsController@index');
-

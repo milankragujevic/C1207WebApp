@@ -37,30 +37,35 @@ class MovieController extends Controller
         if (!empty($epislug)) {
             $movie = $movie->episodes()->whereSlug($epislug)->first();
         }
-        try {
-            $codeGoogle = $movie->movielinks()->whereProvider('Google Drive')->first()->link;
-            $view = Analytic::create(['view_count' => 1]);
+			$view = Analytic::create(['view_count' => 1]);
             $movie->analytics()->save($view);
             $view = $movie->analytics()->count();
+        try {
+            $codeGoogle = $movie->movielinks()->whereProvider('Google Drive')->first()->link;
             $linkGoogle = file_get_contents(url('/googlelink/'.$codeGoogle));
             //$linkGoogle = file_get_contents(url('/googlelink/'.'0BzWDDSOVVu0AeDNVMDU2VUdoeG8'));
-        //dd($linkGoogle);
+			//dd($linkGoogle);
             $linkGoogle = json_decode($linkGoogle,true);
-        $temp=collect();
-        foreach ($linkGoogle as $key=>$value){
+			$temp=collect();
+			foreach ($linkGoogle as $key=>$value){
             $temp->put($value['label'],$value['file']);
-        };
-        $linkGoogle=$temp;
-            $codeOpenload = $movie->movielinks()->whereProvider('Openload')->first()->link;
-            $linkOpenload = 'https://openload.co/embed/' . $codeOpenload . '/';
+			};
+			$linkGoogle=$temp;
+            
         } catch (\Exception $ex) {
-            $view='';
             $linkGoogle = collect();
+			$linkGoogle['1080p']='';
             $linkGoogle['720p']='';
             $linkGoogle['480p']='';
-            $linkGoogle['360p']='';
-            $linkOpenload = '';
+            $linkGoogle['360p']='';          
         }
+		
+		try{
+			$codeOpenload = $movie->movielinks()->whereProvider('Openload')->first()->link;
+            $linkOpenload = 'https://openload.co/embed/' . $codeOpenload . '/';
+		}catch(\Exception $ex){
+			$linkOpenload='';
+		}
         return view('movie_play', compact('movie', 'linkGoogle', 'linkOpenload', 'view'));
     }
 

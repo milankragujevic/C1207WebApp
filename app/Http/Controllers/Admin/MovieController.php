@@ -27,7 +27,6 @@ class MovieController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin:admin');
     }
 
 
@@ -107,7 +106,11 @@ class MovieController extends Controller
                     return back()->with('errorMovie', 'This is episode not movie');
                 }
             }
-            $img = \Intervention\Image\Facades\Image::make($movie['Poster'])->save(public_path('images/poster/') . str_slug($movie['Title']) . '.jpg');
+            try {
+              $img = \Intervention\Image\Facades\Image::make($movie['Poster'])->save(public_path('images/poster/') . str_slug($movie['Title']) . '.jpg');
+            } catch (\Exception $e) {
+              $img = \Intervention\Image\Facades\Image::make(public_path('images/poster/default.jpg'))->save(public_path('images/poster/') . str_slug($movie['Title']) . '.jpg');
+            }
             $request->session()->put('imdbId', $imdbID);
             if (isset($movie['totalSeasons'])) {
                 $request->session()->put('totalSeasons', $movie['totalSeasons']);

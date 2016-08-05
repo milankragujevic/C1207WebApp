@@ -159,7 +159,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         App\Providers\SidebarDataServiceProvider::class,
         Spatie\Analytics\AnalyticsServiceProvider::class,
-
+        Roumen\Sitemap\SitemapServiceProvider::class,
+        Roumen\Feed\FeedServiceProvider::class,
     ],
 
     /*
@@ -207,7 +208,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
-
+        'Feed' => Roumen\Feed\Feed::class,
     ],
 
 ];

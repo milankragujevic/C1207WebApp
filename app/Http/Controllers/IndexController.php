@@ -7,7 +7,10 @@ use App\Group;
 use App\Movie;
 use App\Movierequest;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
+use App;
+use App\Actor;
+use App\Director;
 use App\Http\Requests;
 
 class IndexController extends Controller
@@ -63,6 +66,55 @@ class IndexController extends Controller
             'status'=>0,
         ]);
         return back();
+    }
+    public function sitemap(){
+      $Sitemap=App::make('sitemap');
+      $Sitemap->add(url('/'),Carbon::now(),'1.0','always');
+      $Sitemap->add(url('/latestmovie'),Carbon::now(),'0.9','always');
+      $Sitemap->add(url('/latestseries'),Carbon::now(),'0.9','always');
+      $Sitemap->add(url('/cinema'),Carbon::now(),'0.9','always');
+      $Sitemap->add(url('/hot'),Carbon::now(),'0.9','always');
+      $Sitemap->add(url('/topimdb'),Carbon::now(),'0.9','always');
+      $Sitemap->add(url('/latestmovie'),Carbon::now(),'0.9','always');
+
+      $movieList=Movie::select('slug','updated_at')->get();
+      foreach ($movieList as $item) {
+        $Sitemap->add(url('/movie/'.$item->slug),$item->updated_at,'0.8','monthly');
+        $Sitemap->add(url('/play/'.$item->slug),$item->updated_at,'0.8','daily');
+      }
+      $starList=Actor::select('name')->get();
+      foreach ($starList as $item) {
+        $Sitemap->add(url('/star/'.str_slug($item->name)),Carbon::today(),'0.9','daily');
+      }
+      $directorList=Director::select('name')->get();
+      foreach ($directorList as $item) {
+        $Sitemap->add(url('/director/'.str_slug($item->name)),Carbon::today(),'0.9','daily');
+      }
+      return $Sitemap->render('xml');
+    }
+
+    public function feed(){
+      $movieList=Movie::orderBy('created_at','desc')->take(20)->get();
+      $feed=App::make('feed');
+      $feed->title='Smovie.tv - Watch latest movies and tv series online';
+      $feed->description='Latest movies and tv series';
+      $feed->logo=url('/images/logo.png');
+      $feed->link=url('feed');
+      $feed->setDateFormat('datetime');
+      $feed->pubdate=$movieList[0]->created_at;
+      $feed->lang='en';
+      $feed->setShortening(true);
+       foreach ($movieList as $item) {
+         $feed->add(
+         $item->name,
+         $item->directors()->first()->name,
+         url('/movie/'.$item->slug),
+         $item->created_at,
+         $item->description,
+         url('/play/'.$item->slug)
+       );
+       }
+       return $feed->render('atom');
     }
 
 }

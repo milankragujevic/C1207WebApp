@@ -409,7 +409,7 @@ nav .active > a {
 #main-content .serie,
 #side-bar .hot-movies,
 #side-bar .requested-movies,
-#side-bar .wid-tag, 
+#side-bar .wid-tag,
 #main-content .suggestion{
     background-color: #fff;
     margin-bottom: 20px;
@@ -659,7 +659,7 @@ footer .last-footer h6 {
 }
 .view a.info {
     /*background:url(../imgages/link.png) center no-repeat;*/
-    
+
     display: inline-block;
     text-decoration: none;
     padding: 0;
@@ -699,7 +699,7 @@ footer .last-footer h6 {
     padding: 10px;
     border-radius: 5px;
     /*optional*/
-    
+
     color: #aaa;
     font-size: 13px;
 }
@@ -913,7 +913,7 @@ textarea {
     padding-top: 5px;
 }
 .menu-server .server1,
-.menu-server .server2{ 
+.menu-server .server2{
 	padding:10px;
 	border-top:1px solid #eeeeee;
 }
@@ -1079,3 +1079,14 @@ ol li:hover {
 }
 .nav-pills li{ cursor:pointer;}
 #suggestion-content .please-vote-star{display:none;}
+
+.btn-eps{ line-height:35px;}
+#container, #side-bar{max-width:1440px; margin:0 auto;}
+
+.wrap-header .container-fluid > .row:first-child{
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.top-bar > .container-fluid{
+    max-width: 1440px;
+}

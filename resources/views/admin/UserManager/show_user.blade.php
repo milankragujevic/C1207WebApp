@@ -1,5 +1,4 @@
 @extends('layout.admin.master')
-@section('title','User Dashboard')
 @section('content')
     <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->

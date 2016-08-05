@@ -22,8 +22,15 @@ class FilterController extends Controller
                 break;
             }
         }
+		if(isset($found))
+		{
         $listMovie=$found->movies()->paginate(30);
         $title=$found->name;
+		}else{
+			$title='Sorry no result was found';
+			$listMovie=Movie::whereName('')->paginate(30);
+		}
+		
         return view('movie_list',compact('title','listMovie'));
     }
     public function director($director){

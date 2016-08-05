@@ -29,7 +29,7 @@ class Episode extends Model
     public function errors(){
         return $this->morphMany(Error::class,'errorable');
     }
-    public function analytic(){
-        return $this->morphOne(Analytics::class,'analyticable');
+    public function analytics(){
+        return $this->morphOne(Analytic::class,'analyticable');
     }
 }

@@ -15,7 +15,7 @@
                     @foreach($hotMovie->chunk(6) as $chunked)
                     <div class="row">
                         @foreach($chunked as $item)
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
                                 <div class="post">
                                     <div class="view effect">
                                         <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
@@ -25,30 +25,10 @@
                                     </div>
                                     <div class="clear"></div>
                                     <a href="{{ url('/movie/'.$item->slug) }}">
-                                        <h3>{{ $item->name }}</h3>
+                                        <h3>{{ $item->name }} {{ $item->type=='series'? 'Season '.$item->season:''}}</h3>
                                     </a>
                                     <div class="please-vote-star">
-                                        @if($item->rating!=0)
-                                            @for($x=1;$x<=$item->rating/2;$x++)
-                                                <i class="fa fa-star"></i>
-                                            @endfor
-                                            @if($item->rating/2 - ($x-1)>=0.5)
-                                                <i class="fa fa-star"></i>
-                                                {{-- */$x++;/* --}}
-                                            @else
-                                                {{-- */$x--;/* --}}
-                                            @endif
-                                            @while($x<5)
-                                                <i class="fa fa-star-o"></i>
-                                                {{-- */$x++;/* --}}
-                                            @endwhile
-                                        @else
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        @endif
+									{!! $item->renderStar() !!}
                                     </div>
                                     <span>IMDB: {{ $item->rating }}</span>
                                 </div>
@@ -72,7 +52,7 @@
                     @foreach($requestedMovie->chunk(6) as $chunked)
                     <div class="row">
                         @foreach($chunked as $item)
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
                                 <div class="post">
                                     <div class="view effect">
                                         <img class="thumb" src="{{ url('images/poster/'.$item->poster) }}" alt="Watch Free {{ $item->name }} Online" title="Watch Free {{ $item->name }} Online"/>
@@ -82,30 +62,10 @@
                                     </div>
                                     <div class="clear"></div>
                                     <a href="{{ url('/movie/'.$item->slug) }}">
-                                        <h3>{{ $item->name }}</h3>
+                                        <h3>{{ $item->name }} {{ $item->type=='series'? 'Season '.$item->season:''}}</h3>
                                     </a>
                                     <div class="please-vote-star">
-                                        @if($item->rating!=0)
-                                            @for($x=1;$x<=$item->rating/2;$x++)
-                                                <i class="fa fa-star"></i>
-                                            @endfor
-                                            @if($item->rating/2 - ($x-1)>=0.5)
-                                                <i class="fa fa-star"></i>
-                                                {{-- */$x++;/* --}}
-                                            @else
-                                                {{-- */$x--;/* --}}
-                                            @endif
-                                            @while($x<5)
-                                                <i class="fa fa-star-o"></i>
-                                                {{-- */$x++;/* --}}
-                                            @endwhile
-                                        @else
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        @endif
+                                        {!! $item->renderStar() !!}
                                     </div>
                                     <span>IMDB: {{ $item->rating }}</span>
                                 </div>

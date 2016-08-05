@@ -10,7 +10,9 @@
         "barryvdh/laravel-ide-helper": "^2.2",
         "intervention/image": "^2.3",
         "guzzlehttp/guzzle": "^6.2",
-        "spatie/laravel-analytics": "^2.2"
+        "spatie/laravel-analytics": "^2.2",
+        "roumen/sitemap": "^2.6",
+        "roumen/feed": "^2.10"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

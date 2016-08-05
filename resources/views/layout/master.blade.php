@@ -30,6 +30,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+	<meta name="theme-color" content="#FAB13E" />
+	<meta name="google-site-verification" content="K8pqF2C1qY_K6z4GMtrXWTSfP4Io6iUdaaRsnbOjNyU" />
     <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}" type="image/x-icon">
     <link rel="apple-touch-icon" href="{{ asset('/images/favicon.ico') }}">
     <link rel="icon" type="image/png" href="{{ asset('/images/favicon.ico') }}">
@@ -140,19 +142,19 @@
                                             <li><a href="{{ url('/genre/action') }}">Action</a></li>
                                             <li><a href="{{ url('/genre/horror') }}">Horror</a></li>
                                             <li><a href="{{ url('/genre/war') }}">War</a></li>
-                                            <li><a href="{{ url('/genre/Western') }}">Western</a></li>
-                                            <li><a href="{{ url('/genre/Adventure') }}">Adventure</a></li>
+                                            <li><a href="{{ url('/genre/western') }}">Western</a></li>
+                                            <li><a href="{{ url('/genre/adventure') }}">Adventure</a></li>
                                             <li><a href="{{ url('/genre/sci-fi') }}">Sci-Fi</a></li>
                                             <li><a href="{{ url('/genre/drama') }}">Drama</a></li>
                                             <li><a href="{{ url('/genre/comedy') }}">Comedy</a></li>
                                             <li><a href="{{ url('/genre/romance') }}">Romance</a></li>
-                                            <li><a href="{{ url('/genre/Animation') }}">Animation</a></li>
-                                            <li><a href="{{ url('/genre/Sport') }}">Sport</a></li>
-                                            <li><a href="{{ url('/genre/Musical') }}">Musical</a></li>
-                                            <li><a href="{{ url('/genre/Talk-Showmas') }}">Talk-Show</a></li>
-                                            <li><a href="{{ url('/genre/Reality-TV') }}">Reality-TV</a></li>
-                                            <li><a href="{{ url('/genre/Documentary') }}">Documentary</a></li>
-                                            <li><a href="{{ url('/genre/Biography') }}">Biography</a></li>
+                                            <li><a href="{{ url('/genre/animation') }}">Animation</a></li>
+                                            <li><a href="{{ url('/genre/sport') }}">Sport</a></li>
+                                            <li><a href="{{ url('/genre/musical') }}">Musical</a></li>
+                                            <li><a href="{{ url('/genre/talk-show') }}">Talk-Show</a></li>
+                                            <li><a href="{{ url('/genre/reality-tv') }}">Reality-TV</a></li>
+                                            <li><a href="{{ url('/genre/documentary') }}">Documentary</a></li>
+                                            <li><a href="{{ url('/genre/biography') }}">Biography</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown {{ Request::is('country/*')?'active':'' }}">

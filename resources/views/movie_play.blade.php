@@ -59,13 +59,36 @@
             skin:{
                 name:'five'
             },
-            sources: [{
+            sources: [
+			@if(isset($linkGoogle['360p']))
+			{
+                file: "{!! $linkGoogle['360p'] !!}",
+                type :"mp4",
+				label :"360",
+            },
+			@endif
+			@if(isset($linkGoogle['480p']))
+			{
                 file: "{!! $linkGoogle['480p'] !!}",
-                type :"mp4"
-            },{
+                type :"mp4",
+				label :"480"
+            },
+			@endif
+			@if(isset($linkGoogle['720p']))
+			{
                 file: "{!! $linkGoogle['720p'] !!}",
-                type :"mp4"
-            }],
+                type :"mp4",
+				label :"720",
+            },
+			@endif
+			@if(isset($linkGoogle['1080p']))
+			{
+                file: "{!! $linkGoogle['1080p'] !!}",
+                type :"mp4",
+				label :"1080",
+            },
+			@endif
+			],
             aspectratio: '16:9',
             width: '100%'
         });
@@ -77,15 +100,44 @@
 
         /*menu-server*/
         $('.menu-server .play-server1').click(function () {
-
-            var playerInstance = jwplayer("movie");
-            playerInstance.setup({
-
-                aspectratio: '16:9',
-                width: '100%',
-                type: 'mp4',
-                file: '{!!$linkGoogle!!}'
-            });
+var playerInstance = jwplayer("movie");
+        playerInstance.setup({
+            skin:{
+                name:'five'
+            },
+            sources: [
+			@if(isset($linkGoogle['360p']))
+			{
+                file: "{!! $linkGoogle['360p'] !!}",
+                type :"mp4",
+				label :"360",
+            },
+			@endif
+			@if(isset($linkGoogle['480p']))
+			{
+                file: "{!! $linkGoogle['480p'] !!}",
+                type :"mp4",
+				label :"480"
+            },
+			@endif
+			@if(isset($linkGoogle['720p']))
+			{
+                file: "{!! $linkGoogle['720p'] !!}",
+                type :"mp4",
+				label :"720",
+            },
+			@endif
+			@if(isset($linkGoogle['1080p']))
+			{
+                file: "{!! $linkGoogle['1080p'] !!}",
+                type :"mp4",
+				label :"1080",
+            },
+			@endif
+			],
+            aspectratio: '16:9',
+            width: '100%'
+        });
         });
         $('.menu-server .play-server2').click(function () {
             $('#movie').html('<iframe id="frame-player" class="frame-player" src="{{$linkOpenload}}" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true" scrolling="no"></iframe>');
